@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmxujmchhawdw"]
+
+[ext_resource type="Script" path="res://scenes/objects/interact_button.gd" id="1_rbmue"]
+[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_4lg78"]
+[ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_ohfno"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75obg"]
+radius = 33.0151
+
+[node name="InteractButton" type="Area2D"]
+script = ExtResource("1_rbmue")
+
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("2_ohfno")]
+bodies = [NodePath("..")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_75obg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.273627, 0, 0.00432153, 1)
+position = Vector2(2.98023e-08, 0)
+scale = Vector2(1.07813, 2.79688)
+texture = ExtResource("2_4lg78")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(1, 0.0823529, 0.109804, 1)
+position = Vector2(-9.53674e-07, -7.85965)
+scale = Vector2(0.382353, 0.114035)
+texture = ExtResource("2_4lg78")

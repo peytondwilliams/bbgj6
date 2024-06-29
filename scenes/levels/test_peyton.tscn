@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://k1iu6jryp8q7"]
+[gd_scene load_steps=10 format=3 uid="uid://k1iu6jryp8q7"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_dvuxa"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_4yowe"]
 [ext_resource type="PackedScene" uid="uid://qloxs0j41yhf" path="res://scenes/objects/portal.tscn" id="3_f36xp"]
 [ext_resource type="PackedScene" uid="uid://e24l1fyk7ovj" path="res://scenes/objects/box.tscn" id="4_exjqi"]
+[ext_resource type="PackedScene" uid="uid://dmxujmchhawdw" path="res://scenes/objects/interact_button.tscn" id="5_jqvvj"]
+[ext_resource type="PackedScene" uid="uid://cdk72s52itc07" path="res://scenes/objects/physics_button.tscn" id="6_w67rp"]
+[ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="7_vp60c"]
+[ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="8_fcc0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tipl"]
 size = Vector2(1100.5, 53)
@@ -25,34 +29,30 @@ position = Vector2(-4.75002, 3.00001)
 scale = Vector2(69.5, 3.6875)
 texture = ExtResource("2_4yowe")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
-position = Vector2(1353, 366)
-scale = Vector2(-0.24, 4.4)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
-scale = Vector2(0.800277, 1.04801)
-shape = SubResource("RectangleShape2D_1tipl")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D/CollisionShape2D"]
-position = Vector2(-4.75002, 3.00001)
-scale = Vector2(69.5, 3.6875)
-texture = ExtResource("2_4yowe")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
-position = Vector2(197, 363)
-scale = Vector2(-0.24, 4.4)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D2"]
-scale = Vector2(0.800277, 1.04801)
-shape = SubResource("RectangleShape2D_1tipl")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D2/CollisionShape2D"]
-position = Vector2(-4.75002, 3.00001)
-scale = Vector2(69.5, 3.6875)
-texture = ExtResource("2_4yowe")
-
 [node name="Portal" parent="." instance=ExtResource("3_f36xp")]
 position = Vector2(830, 460)
 
 [node name="Box" parent="." instance=ExtResource("4_exjqi")]
 position = Vector2(704, 441)
+
+[node name="InteractButton" parent="." node_paths=PackedStringArray("linked_node") instance=ExtResource("5_jqvvj")]
+position = Vector2(918, 478)
+linked_node = NodePath("../Door")
+
+[node name="PhysicsButton" parent="." node_paths=PackedStringArray("linked_node") instance=ExtResource("6_w67rp")]
+position = Vector2(417, 492)
+linked_node = NodePath("../Door")
+
+[node name="Door" parent="." instance=ExtResource("7_vp60c")]
+position = Vector2(1036, 442)
+
+[node name="PortalSurface" parent="." instance=ExtResource("8_fcc0n")]
+position = Vector2(212, 455)
+
+[node name="PortalSurface2" parent="." instance=ExtResource("8_fcc0n")]
+position = Vector2(1328, 367)
+scale = Vector2(1.85342, 4.37837)
+
+[node name="PortalSurface3" parent="." instance=ExtResource("8_fcc0n")]
+position = Vector2(688, 517)
+rotation = 1.57079

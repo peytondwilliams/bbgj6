@@ -13,7 +13,6 @@ var direction := Vector2(1, 1)
 
 
 func _physics_process(delta):
-
 	var collision := move_and_collide(SPEED * direction)
 	if collision:
 	
@@ -21,7 +20,7 @@ func _physics_process(delta):
 		var col_normal := collision.get_normal()
 		var col_collider := collision.get_collider()
 		
-		if col_collider.has_method("is_portalable") or true: # TODO remove true
+		if col_collider.is_in_group("portal_surface"): # TODO remove true
 			var portal = PORTAL_PRELOAD.instantiate()
 			get_parent().add_child(portal)
 			portal.global_position = col_pos

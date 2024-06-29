@@ -17,8 +17,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	print(to_dimension)
-	
 	if body.has_method("get_dimension_handler"):
 		body.get_dimension_handler().swap_dimension(to_dimension)
 	elif body.has_method("swap_dimension"):

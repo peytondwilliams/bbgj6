@@ -12,8 +12,8 @@ collision_layer = 10
 collision_mask = 13
 script = ExtResource("1_fcgiu")
 
-[node name="DimensionHandler" parent="." node_paths=PackedStringArray("body") instance=ExtResource("2_han56")]
-body = NodePath("..")
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("2_han56")]
+bodies = [NodePath("..")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
