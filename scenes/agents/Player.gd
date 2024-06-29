@@ -1,8 +1,10 @@
 extends RigidBody2D
 
+@export var body: RigidBody2D
 @export var swap_cooldown_timer : Timer
 @export var camera: Camera2D
 @export var gun: Sprite2D
+@export var feet_area: Area2D
 
 @onready var PORTAL_PROJECTILE_PRELOAD = preload("res://scenes/objects/portal_projectile.tscn")
 @onready var eb = EventBus
@@ -29,7 +31,8 @@ func _on_feet_area_2d_body_entered(body):
 	is_on_floor = true
 
 func _on_feet_area_2d_body_exited(body):
-	is_on_floor = false
+	if feet_area.get_overlapping_bodies().size() == 0:
+		is_on_floor = false
 	
 func get_input_direction():
 	var direction_vector = Vector2.ZERO
@@ -48,7 +51,7 @@ func _physics_process(delta):
 	handle_portal_shoot()
 	var input_direction = get_input_direction()
 	
-	var movement_force = input_direction * MOVE_FORCE
+	var movement_force = input_direction * MOVE_FORCE * mirror_value
 	apply_central_force(movement_force)
 
 	
@@ -74,9 +77,17 @@ func handle_portal_shoot():
 func swap_dimension(new_dimension: int):
 	if not swap_cooldown_timer.is_stopped():
 		return false
+		
+	print("new dimension for player: ", new_dimension)
 	
 	swap_cooldown_timer.start()
 	
+	for physics_body in [body, feet_area]:
+		physics_body.set_collision_layer_value(dimension + 3, false)
+		physics_body.set_collision_mask_value(dimension + 3, false)
+		physics_body.set_collision_layer_value(new_dimension + 3, true)
+		physics_body.set_collision_mask_value(new_dimension + 3, true)
+
 	dimension = new_dimension
 	eb.player_dimension_swap.emit(new_dimension)
 
@@ -92,3 +103,4 @@ func spawn_portal_handler(new_portal: Node2D):
 	if spawned_portal != null:
 		spawned_portal.queue_free()
 	spawned_portal = new_portal
+	new_portal.set_dimension(dimension)

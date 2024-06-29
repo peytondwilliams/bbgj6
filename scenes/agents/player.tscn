@@ -4,25 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_vnqs1"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="3_8irsv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_80yem"]
-size = Vector2(80, 78)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_so5sj"]
+radius = 21.0
+height = 78.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r30f5"]
-size = Vector2(78, 1)
+size = Vector2(34, 7)
 
-[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("swap_cooldown_timer", "camera", "gun")]
+[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("body", "swap_cooldown_timer", "camera", "gun", "feet_area")]
 position = Vector2(2.08165e-12, -100)
-collision_layer = 7
+collision_layer = 15
+collision_mask = 9
 lock_rotation = true
 script = ExtResource("1_kfqh5")
+body = NodePath(".")
 swap_cooldown_timer = NodePath("SwapCooldownTimer")
 camera = NodePath("Camera2D")
 gun = NodePath("GunSprite")
+feet_area = NodePath("FeetArea2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_80yem")
+shape = SubResource("CapsuleShape2D_so5sj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.08165e-12, 0)
+scale = Vector2(0.525, 1)
 texture = ExtResource("2_vnqs1")
 
 [node name="SwapCooldownTimer" type="Timer" parent="."]
@@ -42,9 +48,11 @@ scale = Vector2(0.366274, 1.98463)
 texture = ExtResource("3_8irsv")
 
 [node name="FeetArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetArea2D"]
-position = Vector2(-2.08165e-12, 39.5)
+position = Vector2(-1, 44)
 shape = SubResource("RectangleShape2D_r30f5")
 
 [connection signal="body_entered" from="FeetArea2D" to="." method="_on_feet_area_2d_body_entered"]
