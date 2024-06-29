@@ -16,6 +16,7 @@ size = Vector2(1100.5, 53)
 
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("spawned_portal") instance=ExtResource("1_dvuxa")]
 position = Vector2(544, 386)
+gravity_scale = 0.0
 spawned_portal = NodePath("../Portal")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

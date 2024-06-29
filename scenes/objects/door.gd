@@ -29,4 +29,6 @@ func switch_state(new_state: bool):
 	
 		state = new_state
 	
-		
+	
+func get_dimension_handler():
+	return $DimensionHandler
