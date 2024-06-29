@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://k1iu6jryp8q7"]
+
+[ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_dvuxa"]
+[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_4yowe"]
+[ext_resource type="PackedScene" uid="uid://qloxs0j41yhf" path="res://scenes/objects/portal.tscn" id="3_f36xp"]
+[ext_resource type="PackedScene" uid="uid://e24l1fyk7ovj" path="res://scenes/objects/box.tscn" id="4_exjqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tipl"]
+size = Vector2(1100.5, 53)
+
+[node name="Test Peyton" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("spawned_portal") instance=ExtResource("1_dvuxa")]
+position = Vector2(544, 386)
+spawned_portal = NodePath("../Portal")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(782.75, 527)
+shape = SubResource("RectangleShape2D_1tipl")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(-4.75002, 3.00001)
+scale = Vector2(69.5, 3.6875)
+texture = ExtResource("2_4yowe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(1353, 366)
+scale = Vector2(-0.24, 4.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
+scale = Vector2(0.800277, 1.04801)
+shape = SubResource("RectangleShape2D_1tipl")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D/CollisionShape2D"]
+position = Vector2(-4.75002, 3.00001)
+scale = Vector2(69.5, 3.6875)
+texture = ExtResource("2_4yowe")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(197, 363)
+scale = Vector2(-0.24, 4.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D2"]
+scale = Vector2(0.800277, 1.04801)
+shape = SubResource("RectangleShape2D_1tipl")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D2/CollisionShape2D"]
+position = Vector2(-4.75002, 3.00001)
+scale = Vector2(69.5, 3.6875)
+texture = ExtResource("2_4yowe")
+
+[node name="Portal" parent="." instance=ExtResource("3_f36xp")]
+position = Vector2(830, 460)
+
+[node name="Box" parent="." instance=ExtResource("4_exjqi")]
+position = Vector2(704, 441)
