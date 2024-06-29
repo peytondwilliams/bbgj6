@@ -14,6 +14,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func set_dimension(curr_dimension: int):
+	in_dimension = curr_dimension
+	if in_dimension == 2:
+		to_dimension = 1
+	else:
+		to_dimension = 2
 
 
 func _on_body_entered(body):
