@@ -6,13 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80yem"]
 size = Vector2(80, 78)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("swap_cooldown_timer")]
 position = Vector2(2.08165e-12, -100)
 collision_layer = 7
 script = ExtResource("1_kfqh5")
+swap_cooldown_timer = NodePath("SwapCooldownTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_80yem")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vnqs1")
+
+[node name="SwapCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

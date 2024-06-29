@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://e24l1fyk7ovj"]
+[gd_scene load_steps=5 format=3 uid="uid://e24l1fyk7ovj"]
 
 [ext_resource type="Script" path="res://scenes/objects/box.gd" id="1_fcgiu"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_xcbuw"]
+[ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_han56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45o3n"]
 size = Vector2(49, 49)
 
-[node name="Box" type="RigidBody2D" node_paths=PackedStringArray("swap_cooldown_timer")]
+[node name="Box" type="RigidBody2D"]
 collision_layer = 10
 collision_mask = 13
 script = ExtResource("1_fcgiu")
-swap_cooldown_timer = NodePath("SwapCooldownTimer")
+
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("body") instance=ExtResource("2_han56")]
+body = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)

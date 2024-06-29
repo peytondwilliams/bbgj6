@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://3650js0l0h0w"]
+
+[ext_resource type="Script" path="res://scenes/agents/dimension_handler.gd" id="1_iclpa"]
+
+[node name="DimensionHandler" type="Node" node_paths=PackedStringArray("swap_cooldown_timer")]
+script = ExtResource("1_iclpa")
+swap_cooldown_timer = NodePath("SwapCooldownTimer")
+
+[node name="SwapCooldownTimer" type="Timer" parent="."]
