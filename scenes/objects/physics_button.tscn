@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdk72s52itc07"]
+
+[ext_resource type="Script" path="res://scenes/objects/physics_button.gd" id="1_50e6u"]
+[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_niswo"]
+[ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="3_b61u8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiqfk"]
+size = Vector2(89, 2)
+
+[sub_resource type="Animation" id="Animation_jeegq"]
+resource_name = "press_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, -6)]
+}
+
+[sub_resource type="Animation" id="Animation_mrey6"]
+resource_name = "press_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -6), Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vpt2"]
+_data = {
+"press_down": SubResource("Animation_mrey6"),
+"press_up": SubResource("Animation_jeegq")
+}
+
+[node name="PhysicsButton" type="Node2D" node_paths=PackedStringArray("anim_player", "detection_area", "button")]
+script = ExtResource("1_50e6u")
+anim_player = NodePath("AnimationPlayer")
+detection_area = NodePath("AnimatableBody2D/Detection2D")
+button = NodePath("AnimatableBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Base" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(2, 5)
+scale = Vector2(7.6875, 0.744459)
+texture = ExtResource("1_niswo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-81, 10, -46, -2, 45, -2, 82, 10)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D"]
+polygon = PackedVector2Array(-46, 4, -40, -1, 40, -1, 45, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+self_modulate = Color(0.720857, 0.241719, 0.215569, 1)
+z_index = -1
+position = Vector2(0, 2)
+scale = Vector2(5.76, 0.4)
+texture = ExtResource("1_niswo")
+
+[node name="Detection2D" type="Area2D" parent="AnimatableBody2D"]
+position = Vector2(0, 3)
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/Detection2D"]
+position = Vector2(-0.5, -6)
+shape = SubResource("RectangleShape2D_kiqfk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_7vpt2")
+}
+
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("3_b61u8")]
+bodies = [NodePath("../StaticBody2D"), NodePath("../AnimatableBody2D"), NodePath("../AnimatableBody2D/Detection2D")]
+
+[connection signal="body_entered" from="AnimatableBody2D/Detection2D" to="." method="_on_detection_2d_body_entered"]
+[connection signal="body_exited" from="AnimatableBody2D/Detection2D" to="." method="_on_detection_2d_body_exited"]
