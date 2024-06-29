@@ -1,6 +1,7 @@
 extends Node
 
 signal player_dimension_swap(dimension: int)
+signal spawn_portal(portal: Node2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

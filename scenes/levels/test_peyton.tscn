@@ -10,8 +10,9 @@ size = Vector2(1100.5, 53)
 
 [node name="Test Peyton" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_dvuxa")]
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("spawned_portal") instance=ExtResource("1_dvuxa")]
 position = Vector2(544, 386)
+spawned_portal = NodePath("../Portal")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -20,6 +21,32 @@ position = Vector2(782.75, 527)
 shape = SubResource("RectangleShape2D_1tipl")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(-4.75002, 3.00001)
+scale = Vector2(69.5, 3.6875)
+texture = ExtResource("2_4yowe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(1353, 366)
+scale = Vector2(-0.24, 4.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
+scale = Vector2(0.800277, 1.04801)
+shape = SubResource("RectangleShape2D_1tipl")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D/CollisionShape2D"]
+position = Vector2(-4.75002, 3.00001)
+scale = Vector2(69.5, 3.6875)
+texture = ExtResource("2_4yowe")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(197, 363)
+scale = Vector2(-0.24, 4.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D2"]
+scale = Vector2(0.800277, 1.04801)
+shape = SubResource("RectangleShape2D_1tipl")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D2/CollisionShape2D"]
 position = Vector2(-4.75002, 3.00001)
 scale = Vector2(69.5, 3.6875)
 texture = ExtResource("2_4yowe")

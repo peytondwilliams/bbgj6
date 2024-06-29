@@ -7,3 +7,5 @@ script = ExtResource("1_iclpa")
 swap_cooldown_timer = NodePath("SwapCooldownTimer")
 
 [node name="SwapCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

@@ -21,17 +21,16 @@ func _process(delta):
 
 
 func player_dimension_swap(player_dimension: int):
-	print("handling player dimension swap in handler")
 	swap_hidden()
 	
 
 func swap_hidden():
-	print("swapping hidden")
 	body.visible = !body.visible
 	body.set_collision_mask_value(3, !body.get_collision_mask_value(3))
 	
 
 func swap_dimension(new_dimension: int):
+	print("swapping dimension", new_dimension)
 	if not swap_cooldown_timer.is_stopped():
 		return
 		
