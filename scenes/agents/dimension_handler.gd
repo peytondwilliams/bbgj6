@@ -43,6 +43,7 @@ func swap_dimension(new_dimension: int):
 	
 		if body is RigidBody2D:
 			body.linear_velocity = -1 * body.linear_velocity
+			body.apply_central_impulse(body.mass * 200 * body.linear_velocity.normalized())
 	
 	dimension = new_dimension
 	

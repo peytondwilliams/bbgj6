@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://e24l1fyk7ovj"]
+[gd_scene load_steps=6 format=3 uid="uid://e24l1fyk7ovj"]
 
 [ext_resource type="Script" path="res://scenes/objects/box.gd" id="1_fcgiu"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_xcbuw"]
 [ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_han56"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_atcle"]
+friction = 0.8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45o3n"]
 size = Vector2(49, 49)
@@ -10,6 +13,9 @@ size = Vector2(49, 49)
 [node name="Box" type="RigidBody2D"]
 collision_layer = 10
 collision_mask = 13
+physics_material_override = SubResource("PhysicsMaterial_atcle")
+linear_damp = 3.0
+angular_damp = 10.675
 script = ExtResource("1_fcgiu")
 
 [node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("2_han56")]

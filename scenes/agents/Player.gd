@@ -11,17 +11,17 @@ extends RigidBody2D
 
 @export var spawned_portal : Node2D
 
-const HORIZONTAL_MOVE_FORCE = 2000.0
-const VERTICAL_MOVE_FORCE = -50000.0
+const GOAL_VELOCITY_FACTOR = 300
+const ACCEL_FACTOR = 4000
+const FORCE_FACTOR = 100
+const VERTICAL_MOVE_IMPULSE = 500
 
-const MOVE_FORCE = Vector2(HORIZONTAL_MOVE_FORCE, VERTICAL_MOVE_FORCE)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 var dimension = 1
-
 var mirror_value = 1
-
 var is_on_floor = true
 
 func _ready():
@@ -35,24 +35,44 @@ func _on_feet_area_2d_body_exited(body):
 		is_on_floor = false
 	
 func get_input_direction():
-	var direction_vector = Vector2.ZERO
-	if is_on_floor:
-		if Input.is_action_pressed("ui_left"):
-			direction_vector.x -= 1
-		if Input.is_action_pressed("ui_right"):
-			direction_vector.x += 1
-		if Input.is_action_just_pressed("ui_up"):
-			direction_vector.y += 1
-	return direction_vector.normalized()
+	if Input.is_action_pressed("ui_left"):
+		return Vector2.LEFT
+	if Input.is_action_pressed("ui_right"):
+		return Vector2.RIGHT
+	return Vector2.ZERO
 	
 
 func _physics_process(delta):
 	
+	# TODO air factor
+	var air_factor = 1.0
+	
+	if not is_on_floor:
+		air_factor = 0.07
+	
 	handle_portal_shoot()
 	var input_direction = get_input_direction()
 	
-	var movement_force = input_direction * MOVE_FORCE * mirror_value
-	apply_central_force(movement_force)
+	var goal_velocity = input_direction * GOAL_VELOCITY_FACTOR * mirror_value
+	var horz_velocity = Vector2(linear_velocity.x, 0)
+
+	var dot = goal_velocity.normalized().dot(horz_velocity.normalized())
+	var factor = 1
+	if dot < 0:
+		factor -= dot
+
+	var new_velocity = horz_velocity.move_toward(goal_velocity, ACCEL_FACTOR * factor * delta)
+	var needed_accel = ((new_velocity - horz_velocity) / delta)
+
+	
+	apply_central_force(Vector2.DOWN * 9.8 * mass * FORCE_FACTOR)
+	apply_central_force(needed_accel * mass * air_factor)
+	
+	if Input.is_action_just_pressed("ui_up"):
+		apply_central_impulse(Vector2.UP * VERTICAL_MOVE_IMPULSE)
+	
+	#var movement_force = input_direction * MOVE_FORCE * mirror_value
+	#apply_central_force(movement_force)
 
 	
 func handle_portal_shoot():
