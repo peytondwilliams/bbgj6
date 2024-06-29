@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqi3g6103jneb"]
+[gd_scene load_steps=6 format=3 uid="uid://dqi3g6103jneb"]
 
 [ext_resource type="Script" path="res://scenes/agents/Player.gd" id="1_kfqh5"]
 [ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_vnqs1"]
@@ -7,9 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80yem"]
 size = Vector2(80, 78)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("swap_cooldown_timer", "camera", "gun")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r30f5"]
+size = Vector2(78, 1)
+
+[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("swap_cooldown_timer", "camera", "gun")]
 position = Vector2(2.08165e-12, -100)
 collision_layer = 7
+lock_rotation = true
 script = ExtResource("1_kfqh5")
 swap_cooldown_timer = NodePath("SwapCooldownTimer")
 camera = NodePath("Camera2D")
@@ -36,3 +40,12 @@ texture = ExtResource("3_8irsv")
 position = Vector2(-5.68182, 0)
 scale = Vector2(0.366274, 1.98463)
 texture = ExtResource("3_8irsv")
+
+[node name="FeetArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetArea2D"]
+position = Vector2(-2.08165e-12, 39.5)
+shape = SubResource("RectangleShape2D_r30f5")
+
+[connection signal="body_entered" from="FeetArea2D" to="." method="_on_feet_area_2d_body_entered"]
+[connection signal="body_exited" from="FeetArea2D" to="." method="_on_feet_area_2d_body_exited"]

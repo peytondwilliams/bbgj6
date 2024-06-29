@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 @export var swap_cooldown_timer : Timer
 @export var camera: Camera2D
@@ -9,8 +9,10 @@ extends CharacterBody2D
 
 @export var spawned_portal : Node2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const HORIZONTAL_MOVE_FORCE = 2000.0
+const VERTICAL_MOVE_FORCE = -50000.0
+
+const MOVE_FORCE = Vector2(HORIZONTAL_MOVE_FORCE, VERTICAL_MOVE_FORCE)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -18,33 +20,36 @@ var dimension = 1
 
 var mirror_value = 1
 
+var is_on_floor = true
+
 func _ready():
 	eb.spawn_portal.connect(spawn_portal_handler)
+
+func _on_feet_area_2d_body_entered(body):
+	is_on_floor = true
+
+func _on_feet_area_2d_body_exited(body):
+	is_on_floor = false
+	
+func get_input_direction():
+	var direction_vector = Vector2.ZERO
+	if is_on_floor:
+		if Input.is_action_pressed("ui_left"):
+			direction_vector.x -= 1
+		if Input.is_action_pressed("ui_right"):
+			direction_vector.x += 1
+		if Input.is_action_just_pressed("ui_up"):
+			direction_vector.y += 1
+	return direction_vector.normalized()
 	
 
 func _physics_process(delta):
 	
-			
 	handle_portal_shoot()
+	var input_direction = get_input_direction()
 	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED * mirror_value
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-	
+	var movement_force = input_direction * MOVE_FORCE
+	apply_central_force(movement_force)
 
 	
 func handle_portal_shoot():
@@ -75,7 +80,7 @@ func swap_dimension(new_dimension: int):
 	dimension = new_dimension
 	eb.player_dimension_swap.emit(new_dimension)
 
-	velocity = -1 * velocity
+	# velocity = -1 * velocity
 	# TODO determine how to process inputs which would keep taking you back to same portal, add slight throw?
 	
 	mirror_value = -1 * mirror_value 

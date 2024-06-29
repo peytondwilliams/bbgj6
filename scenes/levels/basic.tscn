@@ -21,3 +21,4 @@ scale = Vector2(10, 2)
 shape = SubResource("RectangleShape2D_7rji5")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_r2rk1")]
+linear_damp = 1.0
