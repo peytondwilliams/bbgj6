@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5qtiebmeh63y"]
+[gd_scene load_steps=4 format=3 uid="uid://c5qtiebmeh63y"]
 
 [ext_resource type="Script" path="res://scenes/agents/level_manager.gd" id="1_e75wd"]
+[ext_resource type="AudioStream" uid="uid://c1t1lj7yd48th" path="res://assets/music/Try and Solve This Loop.wav" id="2_w76eo"]
+[ext_resource type="AudioStream" uid="uid://6mis5tqrhkdd" path="res://assets/music/Dystopian.wav" id="3_kmiqq"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_e75wd")
+
+[node name="GameMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w76eo")
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kmiqq")

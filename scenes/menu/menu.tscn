@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2gocuhw2o7py"]
+[gd_scene load_steps=7 format=3 uid="uid://c2gocuhw2o7py"]
 
+[ext_resource type="Texture2D" uid="uid://dlvvicl6uqx5k" path="res://assets/fixed.png" id="2_eysrw"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4"]
 [ext_resource type="Script" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="5"]
 [ext_resource type="Script" path="res://scenes/menu/godot_version.gd" id="5_fdyjp"]
+[ext_resource type="AudioStream" uid="uid://6mis5tqrhkdd" path="res://assets/music/Dystopian.wav" id="5_gtwo2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -14,14 +16,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+self_modulate = Color(0.341086, 0.341086, 0.341086, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.176471, 0.682353, 0.647059, 1)
+texture = ExtResource("2_eysrw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -49,7 +52,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4")
 theme_override_font_sizes/font_size = 60
-text = "Godot Game Template"
+text = "Dimensional"
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
@@ -93,14 +96,13 @@ grow_vertical = 0
 [node name="GameVersion" type="Label" parent="MarginContainer/Control/Version"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
-text = "<x.y.z>"
 script = ExtResource("4_3hod2")
 
 [node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
-text = "<GodotVersion>"
+text = "Godot 4.2.2"
 script = ExtResource("5_fdyjp")
 
 [node name="Credits" type="VBoxContainer" parent="MarginContainer/Control"]
@@ -119,7 +121,11 @@ grow_vertical = 0
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "made by: ..."
+text = "made by: 
+Peyton Williams
+Anthony Yuen
+Luxi Liu
+"
 
 [node name="Developer1" type="Label" parent="MarginContainer/Control/Credits"]
 visible = false
@@ -140,6 +146,10 @@ layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
 text = "Developer 3"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gtwo2")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

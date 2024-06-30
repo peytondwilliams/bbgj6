@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cpps5s7mn52h5"]
+[gd_scene load_steps=21 format=3 uid="uid://cpps5s7mn52h5"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_fid70"]
 [ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="2_32clq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bryeljjcybdpe" path="res://scenes/levels/directional_light_2d_2.tscn" id="9_0i4jg"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="10_70kro"]
 [ext_resource type="PackedScene" uid="uid://dxkaxw1xq6ayo" path="res://scenes/levels/texture_rect.tscn" id="10_v21xf"]
+[ext_resource type="PackedScene" uid="uid://b7b13e70raiso" path="res://scenes/objects/exit.tscn" id="11_73tgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5jaj"]
 size = Vector2(1623, 38)
@@ -186,10 +187,10 @@ energy = 0.2
 
 [node name="TextureRect" parent="." instance=ExtResource("10_v21xf")]
 modulate = Color(0.620591, 0.973687, 0.949204, 1)
-offset_left = -449.0
-offset_top = -1733.0
-offset_right = 1860.0
-offset_bottom = 896.0
+offset_left = -1366.0
+offset_top = -1277.0
+offset_right = 2814.0
+offset_bottom = 1189.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_krcyu")
@@ -207,6 +208,9 @@ scale = Vector2(6.11222, -13.6841)
 color = Color(0.288733, 0.242986, 0.635156, 1)
 energy = 0.57
 texture = SubResource("GradientTexture2D_d2hq4")
+
+[node name="Exit" parent="." instance=ExtResource("11_73tgd")]
+position = Vector2(1315, 398)
 
 [editable path="Objects/InteractButton2"]
 [editable path="Objects/InteractButton3"]

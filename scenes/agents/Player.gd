@@ -13,6 +13,9 @@ extends RigidBody2D
 
 @export var spawned_portal : Node2D
 
+@export var world_1_color: Color
+@export var world_2_color: Color
+
 const GOAL_VELOCITY_FACTOR = 300
 const ACCEL_FACTOR = 4000
 const FORCE_FACTOR = 100
@@ -175,6 +178,11 @@ func swap_dimension(new_dimension: int):
 	
 	mirror_value = -1 * mirror_value 
 	camera.zoom.x = -1 * camera.zoom.x 
+	
+	if dimension == 1:
+		$ColorRect.self_modulate = world_1_color
+	else:
+		$ColorRect.self_modulate = world_2_color
 	
 	return true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bdra5a52xrpi7"]
+[gd_scene load_steps=24 format=3 uid="uid://bdra5a52xrpi7"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_dji6s"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_hrbtk"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="5_sx7a7"]
 [ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="6_0uc77"]
 [ext_resource type="PackedScene" uid="uid://dxkaxw1xq6ayo" path="res://scenes/levels/texture_rect.tscn" id="8_efklc"]
+[ext_resource type="PackedScene" uid="uid://b7b13e70raiso" path="res://scenes/objects/exit.tscn" id="10_1mcd1"]
 [ext_resource type="PackedScene" uid="uid://bryeljjcybdpe" path="res://scenes/levels/directional_light_2d_2.tscn" id="11_4wvnu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnyoa"]
@@ -150,10 +151,10 @@ position = Vector2(1030, -222)
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0.360784, 1, 1, 1)
 top_level = true
-offset_left = -894.0
-offset_top = -929.0
-offset_right = 1718.0
-offset_bottom = 756.0
+offset_left = -1992.0
+offset_top = -1647.0
+offset_right = 3165.0
+offset_bottom = 1561.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p3j67")
@@ -175,9 +176,9 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_71wi8")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(1461, -134)
+position = Vector2(1596.14, -277.457)
 rotation = -0.822268
-scale = Vector2(26.9844, 4.28)
+scale = Vector2(36.7333, 4.32322)
 texture = SubResource("GradientTexture2D_kpgx8")
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
@@ -188,10 +189,12 @@ color = Color(1, 0.247059, 0.258824, 1)
 texture = SubResource("GradientTexture2D_3pjff")
 
 [node name="PointLight2D4" type="PointLight2D" parent="."]
-position = Vector2(912, -403)
-rotation = -0.0109023
-scale = Vector2(1.00825, 6.97397)
+position = Vector2(992, -281.584)
+scale = Vector2(1.00825, 7.98698)
 texture = SubResource("GradientTexture2D_a8q45")
+
+[node name="Exit" parent="." instance=ExtResource("10_1mcd1")]
+position = Vector2(1126, -71)
 
 [editable path="Structure/Dimension2Wall"]
 [editable path="Objects/Box"]

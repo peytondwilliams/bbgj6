@@ -35,6 +35,8 @@ gun = NodePath("GunSprite")
 feet_area = NodePath("FeetArea2D")
 interact_area = NodePath("InteractArea2D")
 pickup_area = NodePath("PickupArea2D")
+world_1_color = Color(0, 0, 1, 0.0784314)
+world_2_color = Color(1, 0, 0, 0.0784314)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_so5sj")
@@ -82,6 +84,13 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 shape = SubResource("CircleShape2D_ng7t0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 1, 0.0784314)
+offset_left = -2220.0
+offset_top = -1346.0
+offset_right = 2119.0
+offset_bottom = 1600.0
 
 [connection signal="body_entered" from="FeetArea2D" to="." method="_on_feet_area_2d_body_entered"]
 [connection signal="body_exited" from="FeetArea2D" to="." method="_on_feet_area_2d_body_exited"]
