@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://k1iu6jryp8q7"]
+[gd_scene load_steps=11 format=3 uid="uid://k1iu6jryp8q7"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_dvuxa"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_4yowe"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdk72s52itc07" path="res://scenes/objects/physics_button.tscn" id="6_w67rp"]
 [ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="7_vp60c"]
 [ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="8_fcc0n"]
+[ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="9_g365c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tipl"]
 size = Vector2(1100.5, 53)
@@ -36,9 +37,12 @@ position = Vector2(830, 460)
 [node name="Box" parent="." instance=ExtResource("4_exjqi")]
 position = Vector2(704, 441)
 
+[node name="Box2" parent="." instance=ExtResource("4_exjqi")]
+position = Vector2(-53, 456)
+
 [node name="InteractButton" parent="." node_paths=PackedStringArray("linked_node") instance=ExtResource("5_jqvvj")]
-position = Vector2(918, 478)
-linked_node = NodePath("../Door")
+position = Vector2(942, 481)
+linked_node = NodePath("../Door2")
 
 [node name="PhysicsButton" parent="." node_paths=PackedStringArray("linked_node") instance=ExtResource("6_w67rp")]
 position = Vector2(417, 492)
@@ -48,7 +52,7 @@ linked_node = NodePath("../Door")
 position = Vector2(1036, 442)
 
 [node name="PortalSurface" parent="." instance=ExtResource("8_fcc0n")]
-position = Vector2(212, 455)
+position = Vector2(207, 550)
 
 [node name="PortalSurface2" parent="." instance=ExtResource("8_fcc0n")]
 position = Vector2(1328, 367)
@@ -57,3 +61,9 @@ scale = Vector2(1.85342, 4.37837)
 [node name="PortalSurface3" parent="." instance=ExtResource("8_fcc0n")]
 position = Vector2(688, 517)
 rotation = 1.57079
+
+[node name="MovingPlatform" parent="." instance=ExtResource("9_g365c")]
+position = Vector2(-32, 506)
+
+[node name="Door2" parent="." instance=ExtResource("7_vp60c")]
+position = Vector2(1123, 445)
