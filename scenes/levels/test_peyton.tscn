@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="8_fcc0n"]
 [ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="9_g365c"]
 [ext_resource type="PackedScene" uid="uid://bdvxnjcflf12b" path="res://scenes/objects/cube_spawner.tscn" id="10_tqvcd"]
+[ext_resource type="PackedScene" uid="uid://cqxalihsb3ukx" path="res://scenes/objects/launcher.tscn" id="9_5ugpv"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tipl"]
 size = Vector2(1100.5, 53)
@@ -50,7 +52,7 @@ position = Vector2(417, 492)
 linked_node = NodePath("../Door")
 
 [node name="Door" parent="." instance=ExtResource("7_vp60c")]
-position = Vector2(1036, 442)
+position = Vector2(1049, 441)
 
 [node name="PortalSurface" parent="." instance=ExtResource("8_fcc0n")]
 position = Vector2(207, 550)
@@ -75,3 +77,10 @@ linked_node = NodePath("../CubeSpawner")
 
 [node name="CubeSpawner" parent="." instance=ExtResource("10_tqvcd")]
 position = Vector2(244, 318)
+
+[node name="Launcher" parent="." instance=ExtResource("9_5ugpv")]
+position = Vector2(777, 510)
+
+[node name="Launcher2" parent="." instance=ExtResource("9_5ugpv")]
+position = Vector2(1304, 470)
+rotation = -1.5708
