@@ -6,6 +6,7 @@ extends RigidBody2D
 @export var gun: Sprite2D
 @export var feet_area: Area2D
 @export var interact_area: Area2D
+@export var pickup_area: Area2D
 
 @onready var PORTAL_PROJECTILE_PRELOAD = preload("res://scenes/objects/portal_projectile.tscn")
 @onready var eb = EventBus
@@ -17,6 +18,7 @@ const ACCEL_FACTOR = 4000
 const FORCE_FACTOR = 100
 const VERTICAL_MOVE_IMPULSE = 500
 
+const MAX_PICKUP_DIST = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -26,6 +28,8 @@ var mirror_value = 1
 var is_on_floor = true
 
 var nearby_interact_area : Area2D = null
+
+var curr_pickup_obj : RigidBody2D = null
 
 func _ready():
 	eb.spawn_portal.connect(spawn_portal_handler)
@@ -99,10 +103,9 @@ func _physics_process(delta):
 func handle_portal_shoot():
 	
 	var mouse_pos = get_global_mouse_position()
-	if mouse_pos.x < global_position.x and gun.position.x > 0:
-		gun.position.x = -1 * gun.position.x
-	elif mouse_pos.x > global_position.x and gun.position.x < 0:
-		gun.position.x = -1 * gun.position.x
+	var vector_to_mouse_gun = mouse_pos - global_position
+	vector_to_mouse_gun = vector_to_mouse_gun.normalized() * MAX_PICKUP_DIST
+	gun.global_position = global_position + vector_to_mouse_gun
 	
 	gun.look_at(mouse_pos)
 	
@@ -116,6 +119,39 @@ func handle_portal_shoot():
 		if spawned_portal != null:
 			spawned_portal.queue_free()
 			spawned_portal = null
+			
+
+			
+	if Input.is_action_pressed("input_right_click"):
+		var vector_to_mouse = mouse_pos - global_position
+		vector_to_mouse = vector_to_mouse.normalized() * MAX_PICKUP_DIST
+		pickup_area.global_position = global_position + vector_to_mouse
+		
+		var closest_pickup_obj = null
+		for pickup_body in pickup_area.get_overlapping_bodies():
+			if pickup_body.is_in_group("pickup"):
+				if closest_pickup_obj == null:
+					closest_pickup_obj = pickup_body
+				elif (global_position - closest_pickup_obj.global_position).length() > (global_position - pickup_body.global_position):
+					closest_pickup_obj = pickup_body
+					
+		if closest_pickup_obj == null:
+			if curr_pickup_obj != null:
+				closest_pickup_obj = curr_pickup_obj
+			else:
+				return
+			
+		if closest_pickup_obj is RigidBody2D:
+			var MAX_PICKUP_FORCE = 5000
+			var diff_vec = (pickup_area.global_position - closest_pickup_obj.global_position)
+			var new_force = diff_vec * 100
+			if new_force.length() > MAX_PICKUP_FORCE:
+				new_force = new_force.normalized() * MAX_PICKUP_FORCE
+			closest_pickup_obj.apply_central_force(new_force)
+			curr_pickup_obj = closest_pickup_obj
+
+	if Input.is_action_just_released("input_right_click"):
+		curr_pickup_obj = null
 	
 func swap_dimension(new_dimension: int):
 	if not swap_cooldown_timer.is_stopped():
@@ -125,7 +161,7 @@ func swap_dimension(new_dimension: int):
 	
 	swap_cooldown_timer.start()
 	
-	for physics_body in [body, feet_area, interact_area]:
+	for physics_body in [body, feet_area, interact_area, pickup_area]:
 		physics_body.set_collision_layer_value(dimension + 3, false)
 		physics_body.set_collision_mask_value(dimension + 3, false)
 		physics_body.set_collision_layer_value(new_dimension + 3, true)

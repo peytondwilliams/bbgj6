@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dmxujmchhawdw" path="res://scenes/objects/interact_button.tscn" id="5_jqvvj"]
 [ext_resource type="PackedScene" uid="uid://cdk72s52itc07" path="res://scenes/objects/physics_button.tscn" id="6_w67rp"]
 [ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="7_vp60c"]
-[ext_resource type="PackedScene" uid="uid://bfispf6kk7lqt" path="res://scenes/objects/portal_surface.tscn" id="8_fcc0n"]
+[ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="8_fcc0n"]
+[ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="9_g365c"]
+[ext_resource type="PackedScene" uid="uid://bdvxnjcflf12b" path="res://scenes/objects/cube_spawner.tscn" id="10_tqvcd"]
 [ext_resource type="PackedScene" uid="uid://cqxalihsb3ukx" path="res://scenes/objects/launcher.tscn" id="9_5ugpv"]
-[ext_resource type="PackedScene" path="res://scenes/objects/moving_platform.tscn" id="9_g365c"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tipl"]
 size = Vector2(1100.5, 53)
@@ -68,6 +70,13 @@ position = Vector2(-32, 506)
 
 [node name="Door2" parent="." instance=ExtResource("7_vp60c")]
 position = Vector2(1123, 445)
+
+[node name="InteractButton2" parent="." node_paths=PackedStringArray("linked_node") instance=ExtResource("5_jqvvj")]
+position = Vector2(243, 481)
+linked_node = NodePath("../CubeSpawner")
+
+[node name="CubeSpawner" parent="." instance=ExtResource("10_tqvcd")]
+position = Vector2(244, 318)
 
 [node name="Launcher" parent="." instance=ExtResource("9_5ugpv")]
 position = Vector2(777, 510)
