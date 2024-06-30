@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqi3g6103jneb"]
+[gd_scene load_steps=7 format=3 uid="uid://dqi3g6103jneb"]
 
 [ext_resource type="Script" path="res://scenes/agents/Player.gd" id="1_kfqh5"]
 [ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_vnqs1"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="3_8irsv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_icgir"]
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_so5sj"]
 radius = 21.0
@@ -15,6 +18,7 @@ size = Vector2(34, 7)
 position = Vector2(2.08165e-12, -100)
 collision_layer = 14
 collision_mask = 9
+physics_material_override = SubResource("PhysicsMaterial_icgir")
 lock_rotation = true
 script = ExtResource("1_kfqh5")
 body = NodePath(".")

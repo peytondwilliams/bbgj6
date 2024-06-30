@@ -6,12 +6,17 @@ extends Node
 @export var bodies: Array[CollisionObject2D]
 
 @export var dimension = 1
+@export var is_all_dimensions = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	eb.player_dimension_swap.connect(player_dimension_swap)
 	
-	if dimension != 1:
+	if is_all_dimensions:
+		for body : CollisionObject2D in bodies:
+			body.set_collision_layer_value(5, true)
+			body.set_collision_mask_value(5, true)
+	elif dimension != 1:
 		swap_hidden()
 
 
@@ -21,8 +26,8 @@ func _process(delta):
 
 
 func player_dimension_swap(player_dimension: int):
-	
-	swap_hidden()
+	if not is_all_dimensions:
+		swap_hidden()
 	
 
 func swap_hidden():
@@ -32,6 +37,9 @@ func swap_hidden():
 	
 
 func swap_dimension(new_dimension: int):
+	if is_all_dimensions:
+		return
+		
 	if not swap_cooldown_timer.is_stopped():
 		return
 
