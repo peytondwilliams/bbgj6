@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqxalihsb3ukx"]
+[gd_scene load_steps=6 format=3 uid="uid://cqxalihsb3ukx"]
 
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_8p21d"]
 [ext_resource type="Script" path="res://scenes/objects/launcher.gd" id="2_6hx7w"]
 [ext_resource type="Texture2D" uid="uid://c8u74cumuk8qf" path="res://assets/sprites/arrow.svg" id="2_84my1"]
+[ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="4_l331c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24hgn"]
 size = Vector2(14.4906, 0.805032)
@@ -11,21 +12,28 @@ size = Vector2(14.4906, 0.805032)
 modulate = Color(1, 1, 0, 1)
 position = Vector2(0, 10)
 scale = Vector2(3.3125, 1.24219)
-texture = ExtResource("1_8p21d")
 script = ExtResource("2_6hx7w")
 
-[node name="Arrow" type="Sprite2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="Arrow" type="Sprite2D" parent="Area2D"]
 modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(0, -26.6667)
 scale = Vector2(0.0507813, 0.153472)
 texture = ExtResource("2_84my1")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 14
-collision_mask = 9
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -8.45283)
 shape = SubResource("RectangleShape2D_24hgn")
+
+[node name="launcher" type="Sprite2D" parent="Area2D"]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(1.28302, 1.24219)
+texture = ExtResource("1_8p21d")
+
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("4_l331c")]
+bodies = [NodePath("../Area2D")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

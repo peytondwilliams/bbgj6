@@ -9,6 +9,7 @@ size = Vector2(52, 99)
 
 [node name="CubeSpawner" type="StaticBody2D"]
 script = ExtResource("1_pbv7p")
+all_dimension_color = Color(0.360784, 0.054902, 0.34902, 1)
 
 [node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("2_ejlj2")]
 bodies = [NodePath("..")]

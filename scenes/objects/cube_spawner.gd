@@ -4,6 +4,7 @@ extends StaticBody2D
 
 @export var cube_dimension = 1
 @export var cube_is_all_dimensions = false
+@export var all_dimension_color: Color
 
 var cube_tracker : RigidBody2D = null 
 
@@ -24,7 +25,9 @@ func switch_state(state: bool):
 	
 	var new_cube = CUBE_PRELOAD.instantiate()
 	new_cube.get_dimension_handler().dimension = cube_dimension
-	new_cube.get_dimension_handler().is_all_dimensions = true
+	new_cube.get_dimension_handler().is_all_dimensions = cube_is_all_dimensions
+	if cube_is_all_dimensions:
+		new_cube.modulate = all_dimension_color
 	
 	get_parent().add_child(new_cube)
 	new_cube.global_position = $Marker2D.global_position
