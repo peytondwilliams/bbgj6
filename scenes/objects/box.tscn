@@ -13,7 +13,7 @@ size = Vector2(49, 49)
 
 [node name="Box" type="RigidBody2D"]
 collision_layer = 10
-collision_mask = 13
+collision_mask = 9
 physics_material_override = SubResource("PhysicsMaterial_atcle")
 linear_damp = 3.0
 angular_damp = 10.675

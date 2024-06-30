@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var camera: Camera2D
 @export var gun: Sprite2D
 @export var feet_area: Area2D
+@export var interact_area: Area2D
 
 @onready var PORTAL_PROJECTILE_PRELOAD = preload("res://scenes/objects/portal_projectile.tscn")
 @onready var eb = EventBus
@@ -23,6 +24,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dimension = 1
 var mirror_value = 1
 var is_on_floor = true
+
+var nearby_interact_area : Area2D = null
 
 func _ready():
 	eb.spawn_portal.connect(spawn_portal_handler)
@@ -44,16 +47,32 @@ func get_input_direction():
 
 func _physics_process(delta):
 	
-	# TODO air factor
+	if Input.is_action_just_pressed("input_interact") and nearby_interact_area != null:
+		nearby_interact_area.interact()
+	
+	handle_portal_shoot()
+	
+	# Moving logic below
+	
 	var air_factor = 1.0
 	
 	if not is_on_floor:
 		air_factor = 0.07
 	
-	handle_portal_shoot()
 	var input_direction = get_input_direction()
 	
+	var moving_plat = null
+	for feet_body in feet_area.get_overlapping_bodies():
+		if feet_body.is_in_group("platform"):
+			moving_plat = feet_body
+			break
+			
+		
 	var goal_velocity = input_direction * GOAL_VELOCITY_FACTOR * mirror_value
+	
+	if moving_plat != null:
+		goal_velocity += moving_plat.get_parent().get_velocity() 
+	
 	var horz_velocity = Vector2(linear_velocity.x, 0)
 
 	var dot = goal_velocity.normalized().dot(horz_velocity.normalized())
@@ -64,9 +83,11 @@ func _physics_process(delta):
 	var new_velocity = horz_velocity.move_toward(goal_velocity, ACCEL_FACTOR * factor * delta)
 	var needed_accel = ((new_velocity - horz_velocity) / delta)
 
-	
+	var moving_plat_factor = 1
+
+	apply_central_force(needed_accel * mass * air_factor * moving_plat_factor)
+		
 	apply_central_force(Vector2.DOWN * 9.8 * mass * FORCE_FACTOR)
-	apply_central_force(needed_accel * mass * air_factor)
 	
 	if Input.is_action_just_pressed("ui_up") and is_on_floor:
 		apply_central_impulse(Vector2.UP * VERTICAL_MOVE_IMPULSE)
@@ -104,7 +125,7 @@ func swap_dimension(new_dimension: int):
 	
 	swap_cooldown_timer.start()
 	
-	for physics_body in [body, feet_area]:
+	for physics_body in [body, feet_area, interact_area]:
 		physics_body.set_collision_layer_value(dimension + 3, false)
 		physics_body.set_collision_mask_value(dimension + 3, false)
 		physics_body.set_collision_layer_value(new_dimension + 3, true)
@@ -126,3 +147,12 @@ func spawn_portal_handler(new_portal: Node2D):
 		spawned_portal.queue_free()
 	spawned_portal = new_portal
 	new_portal.set_dimension(dimension)
+
+func _on_interact_area_2d_area_entered(area):
+	if area.is_in_group("interactable"):
+		print("nearby interact")
+		nearby_interact_area = area
+
+func _on_interact_area_2d_area_exited(area):
+	if area.is_in_group("interactable"):
+		nearby_interact_area = null

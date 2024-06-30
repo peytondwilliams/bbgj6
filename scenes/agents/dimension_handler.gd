@@ -14,6 +14,8 @@ func _ready():
 	
 	if is_all_dimensions:
 		for body : CollisionObject2D in bodies:
+			body.set_collision_layer_value(4, true)
+			body.set_collision_mask_value(4, true)
 			body.set_collision_layer_value(5, true)
 			body.set_collision_mask_value(5, true)
 	elif dimension != 1:

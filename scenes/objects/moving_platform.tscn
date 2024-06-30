@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dma2bdsobhjo2"]
+
+[ext_resource type="Script" path="res://scenes/objects/moving_platform.gd" id="1_qslsc"]
+[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_juq0r"]
+[ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_kcsa4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fxqv1"]
+rough = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ek4b3"]
+size = Vector2(110, 20)
+
+[node name="MovingPlatform" type="Node2D" node_paths=PackedStringArray("platform")]
+script = ExtResource("1_qslsc")
+platform = NodePath("AnimatableBody2D")
+
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("2_kcsa4")]
+bodies = [NodePath("../AnimatableBody2D")]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." groups=["platform"]]
+collision_layer = 8
+collision_mask = 8
+physics_material_override = SubResource("PhysicsMaterial_fxqv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_ek4b3")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+self_modulate = Color(1, 0.498039, 0.176471, 1)
+position = Vector2(2.98023e-07, -7.7486e-07)
+scale = Vector2(7, 1.25)
+texture = ExtResource("2_juq0r")
