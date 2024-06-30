@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxkaxw1xq6ayo"]
+
+[ext_resource type="Texture2D" uid="uid://bx3yy017x75xv" path="res://assets/black.png" id="2_2f0ma"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eaigx"]
+
+[node name="TextureRect" type="TextureRect"]
+material = SubResource("ShaderMaterial_eaigx")
+offset_left = -30.0
+offset_right = 1962.0
+offset_bottom = 800.0
+texture = ExtResource("2_2f0ma")
