@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs1as58873mn"]
+
+[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_npcj0"]
+[ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_swysg"]
+
+[node name="Dimension2Wall" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.68, 0.0906667, 0, 1)
+light_mask = 16
+visibility_layer = 16
+texture = ExtResource("1_npcj0")
+
+[node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("2_swysg")]
+bodies = [NodePath("..")]
+dimension = 2

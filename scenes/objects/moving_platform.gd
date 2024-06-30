@@ -27,6 +27,8 @@ func get_dimension_handler():
 	return $DimensionHandler	
 	
 func get_velocity():
+	if !activated:
+		return Vector2.ZERO
 	if is_horz:
 		return speed_pixels * direction * Vector2.RIGHT
 	else:

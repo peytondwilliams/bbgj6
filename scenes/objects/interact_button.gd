@@ -3,6 +3,7 @@ extends Area2D
 @export var linked_node: Node2D
 
 @export var next_press_state = true
+@export var dont_switch_state = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +27,8 @@ func interact():
 		print("linked node  doesnt have switch_state or handle_logic_gate function!")
 		return
 		
-	next_press_state = !next_press_state
+	if not dont_switch_state:
+		next_press_state = !next_press_state
 
 func get_dimension_handler():
 	return $DimensionHandler
