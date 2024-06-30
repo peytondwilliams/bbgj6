@@ -1,0 +1,333 @@
+[gd_scene load_steps=17 format=3 uid="uid://cchcpmtqjtuen"]
+
+[ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_v3sja"]
+[ext_resource type="Texture2D" uid="uid://b6lnndlxrwekt" path="res://assets/sprites/black.png" id="2_e8oda"]
+[ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="3_1ejq8"]
+[ext_resource type="PackedScene" uid="uid://bdvxnjcflf12b" path="res://scenes/objects/cube_spawner.tscn" id="3_dv2g6"]
+[ext_resource type="PackedScene" uid="uid://cs1as58873mn" path="res://scenes/objects/dimension_2_wall.tscn" id="3_l1h82"]
+[ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="3_uitee"]
+[ext_resource type="PackedScene" uid="uid://dmxujmchhawdw" path="res://scenes/objects/interact_button.tscn" id="4_apb1t"]
+[ext_resource type="PackedScene" uid="uid://cqxalihsb3ukx" path="res://scenes/objects/launcher.tscn" id="4_c8yl5"]
+[ext_resource type="PackedScene" uid="uid://cdk72s52itc07" path="res://scenes/objects/physics_button.tscn" id="4_cy8fo"]
+[ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="10_nx25g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox5s2"]
+size = Vector2(2377, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab2ga"]
+size = Vector2(20, 151.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdec0"]
+size = Vector2(165, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unjmh"]
+size = Vector2(155, 22.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t802i"]
+size = Vector2(78, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2ymf"]
+size = Vector2(34, 129.5)
+
+[node name="level5-launcher" type="Node2D"]
+
+[node name="RigidCharacterBody2D" parent="." instance=ExtResource("1_v3sja")]
+position = Vector2(216, 551)
+
+[node name="Structure" type="Node2D" parent="."]
+
+[node name="LevelBlock1" type="StaticBody2D" parent="Structure"]
+position = Vector2(169, 633)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock1"]
+position = Vector2(1017.5, -9)
+shape = SubResource("RectangleShape2D_ox5s2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock1"]
+position = Vector2(1014.5, -8)
+scale = Vector2(148.188, 2.5)
+texture = ExtResource("2_e8oda")
+
+[node name="LevelBlock3" type="StaticBody2D" parent="Structure"]
+position = Vector2(16, -1560)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock3"]
+position = Vector2(1017.5, -9)
+shape = SubResource("RectangleShape2D_ox5s2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock3"]
+position = Vector2(1014.5, -8)
+scale = Vector2(148.188, 2.5)
+texture = ExtResource("2_e8oda")
+
+[node name="LevelBlock4" type="StaticBody2D" parent="Structure"]
+position = Vector2(1800, -1708)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock4"]
+position = Vector2(1017.5, -9)
+shape = SubResource("RectangleShape2D_ox5s2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock4"]
+position = Vector2(1014.5, -8)
+scale = Vector2(148.188, 2.5)
+texture = ExtResource("2_e8oda")
+
+[node name="Dimension2Wall3" parent="Structure" instance=ExtResource("3_l1h82")]
+position = Vector2(1562, 243)
+
+[node name="CollisionShape2D" parent="Structure/Dimension2Wall3" index="0"]
+position = Vector2(0, -66.25)
+shape = SubResource("RectangleShape2D_ab2ga")
+
+[node name="Sprite2D" parent="Structure/Dimension2Wall3" index="1"]
+position = Vector2(0, -66.5)
+scale = Vector2(1, 9.3125)
+
+[node name="Dimension2Wall2" parent="Structure" instance=ExtResource("3_l1h82")]
+position = Vector2(1531, 256)
+
+[node name="CollisionShape2D" parent="Structure/Dimension2Wall2" index="0"]
+position = Vector2(-41.5, -0.25)
+shape = SubResource("RectangleShape2D_kdec0")
+
+[node name="Sprite2D" parent="Structure/Dimension2Wall2" index="1"]
+position = Vector2(-41, 0)
+scale = Vector2(10.25, 1)
+
+[node name="Dimension2Wall" parent="Structure" instance=ExtResource("3_l1h82")]
+position = Vector2(1417, 123)
+rotation = -1.5708
+
+[node name="CollisionShape2D" parent="Structure/Dimension2Wall" index="0"]
+position = Vector2(-47.5, 0.75)
+shape = SubResource("RectangleShape2D_unjmh")
+
+[node name="Sprite2D" parent="Structure/Dimension2Wall" index="1"]
+position = Vector2(-46.4127, 1.5)
+scale = Vector2(9.69841, 1.3125)
+
+[node name="LevelBlock2" type="StaticBody2D" parent="Structure"]
+position = Vector2(417, 518)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock2"]
+position = Vector2(489, -4.5)
+shape = SubResource("RectangleShape2D_t802i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock2"]
+position = Vector2(488.5, -4)
+scale = Vector2(4.9375, 2)
+texture = ExtResource("2_e8oda")
+
+[node name="Dimension2Wall" parent="." instance=ExtResource("3_l1h82")]
+position = Vector2(1781, 599)
+
+[node name="CollisionShape2D" parent="Dimension2Wall" index="0"]
+position = Vector2(-7, -55.25)
+shape = SubResource("RectangleShape2D_k2ymf")
+
+[node name="Sprite2D" parent="Dimension2Wall" index="1"]
+position = Vector2(-8, -56)
+scale = Vector2(2, 8)
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="InteractButton4" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_apb1t")]
+position = Vector2(1406, 585)
+linked_node = NodePath("../MovingPlatform2")
+
+[node name="InteractButton3" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_apb1t")]
+position = Vector2(1082, 584)
+linked_node = NodePath("../MovingPlatform")
+
+[node name="InteractButton2" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_apb1t")]
+position = Vector2(768, 587)
+linked_node = NodePath("../MovingPlatform3")
+
+[node name="PhysicsButton" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_cy8fo")]
+position = Vector2(1490, 237)
+linked_node = NodePath("../Door")
+
+[node name="DimensionHandler" parent="Objects/PhysicsButton" index="3"]
+dimension = 2
+
+[node name="MovingPlatform3" parent="Objects" instance=ExtResource("3_1ejq8")]
+position = Vector2(809, 26)
+rotation = -0.126576
+
+[node name="MovingPlatform2" parent="Objects" instance=ExtResource("3_1ejq8")]
+position = Vector2(1363, 111)
+rotation = -0.570997
+left_dist_pixels = 150
+right_dist_pixels = 150
+speed_pixels = 100
+
+[node name="MovingPlatform" parent="Objects" instance=ExtResource("3_1ejq8")]
+position = Vector2(1097, 76)
+rotation = 0.0553509
+left_dist_pixels = 150
+right_dist_pixels = 150
+speed_pixels = 100
+
+[node name="InteractButton" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_apb1t")]
+position = Vector2(326, 584)
+linked_node = NodePath("../CubeSpawner")
+
+[node name="CubeSpawner" parent="Objects" instance=ExtResource("3_dv2g6")]
+position = Vector2(448, 247)
+
+[node name="PortalCurve" type="Node2D" parent="Objects"]
+position = Vector2(3444, 402)
+rotation = -0.273089
+
+[node name="PortalSurface" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(-164, -241)
+rotation = 1.5708
+
+[node name="PortalSurface2" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(-61, -227)
+rotation = -1.309
+
+[node name="PortalSurface3" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(36, -188)
+rotation = -1.0472
+
+[node name="PortalSurface4" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(118, -126)
+rotation = -0.785398
+scale = Vector2(1, 1)
+
+[node name="PortalSurface5" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(182, -46)
+rotation = -0.523599
+
+[node name="PortalSurface6" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(221, 48)
+rotation = -0.261799
+scale = Vector2(1, 1)
+
+[node name="PortalSurface7" parent="Objects/PortalCurve" instance=ExtResource("3_uitee")]
+position = Vector2(235, 150)
+
+[node name="PortalSurface" parent="Objects" instance=ExtResource("3_uitee")]
+position = Vector2(712, 103)
+rotation = 1.10792
+
+[node name="PortalSurface2" parent="Objects" instance=ExtResource("3_uitee")]
+position = Vector2(1061, 443)
+rotation = 0.799611
+
+[node name="PortalSurface3" parent="Objects" instance=ExtResource("3_uitee")]
+position = Vector2(1203, 104)
+rotation = -0.403708
+
+[node name="PortalSurface4" parent="Objects" instance=ExtResource("3_uitee")]
+position = Vector2(1513, 98)
+rotation = 1.83212
+
+[node name="Door" parent="Objects" instance=ExtResource("10_nx25g")]
+position = Vector2(1809, 550)
+
+[node name="PortalSurface5" parent="Objects" instance=ExtResource("3_uitee")]
+position = Vector2(52, 560)
+
+[node name="Launchers1" type="Node2D" parent="Objects"]
+
+[node name="Launcher12" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(1506, 339)
+rotation = -0.0402457
+scale = Vector2(3.3125, 1.24219)
+
+[node name="Launcher11" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(1313, 372)
+rotation = 0.503287
+
+[node name="Launcher10" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(1172, 407)
+rotation = 1.23156
+
+[node name="Launcher9" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(952, 52)
+rotation = 2.93846
+
+[node name="Launcher8" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(1055, 302)
+rotation = 0.367198
+scale = Vector2(3.3125, 1.24219)
+
+[node name="Launcher7" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(903, 321)
+rotation = 0.285957
+
+[node name="Launcher6" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(1243, 183)
+rotation = -1.68756
+
+[node name="Launcher" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(430, 459)
+rotation = 0.774954
+
+[node name="Launcher2" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(631, 444)
+
+[node name="Launcher3" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(754, 445)
+rotation = 0.883628
+
+[node name="Launcher4" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(630, 207)
+rotation = 2.68735
+
+[node name="Launcher5" parent="Objects/Launchers1" instance=ExtResource("4_c8yl5")]
+position = Vector2(847, 342)
+rotation = -0.430134
+
+[node name="Launchers2" type="Node2D" parent="Objects"]
+position = Vector2(757, 297)
+
+[node name="Launcher2" parent="Objects/Launchers2" instance=ExtResource("4_c8yl5")]
+position = Vector2(-20, -125)
+rotation = 1.13769
+
+[node name="DimensionHandler" parent="Objects/Launchers2/Launcher2" index="1"]
+dimension = 2
+
+[node name="Launcher5" parent="Objects/Launchers2" instance=ExtResource("4_c8yl5")]
+position = Vector2(216, 117)
+rotation = 0.615043
+
+[node name="DimensionHandler" parent="Objects/Launchers2/Launcher5" index="1"]
+dimension = 2
+
+[node name="Launcher3" parent="Objects/Launchers2" instance=ExtResource("4_c8yl5")]
+position = Vector2(160, 73)
+rotation = 0.933145
+
+[node name="DimensionHandler" parent="Objects/Launchers2/Launcher3" index="1"]
+dimension = 2
+
+[node name="Launcher4" parent="Objects/Launchers2" instance=ExtResource("4_c8yl5")]
+position = Vector2(317, -178)
+rotation = 4.28246
+
+[node name="DimensionHandler" parent="Objects/Launchers2/Launcher4" index="1"]
+dimension = 2
+
+[node name="Launcher" parent="Objects/Launchers2" instance=ExtResource("4_c8yl5")]
+position = Vector2(611, 84)
+rotation = -0.993973
+
+[node name="DimensionHandler" parent="Objects/Launchers2/Launcher" index="1"]
+dimension = 2
+
+[editable path="Structure/Dimension2Wall3"]
+[editable path="Structure/Dimension2Wall2"]
+[editable path="Structure/Dimension2Wall"]
+[editable path="Dimension2Wall"]
+[editable path="Objects/PhysicsButton"]
+[editable path="Objects/Launchers2/Launcher2"]
+[editable path="Objects/Launchers2/Launcher5"]
+[editable path="Objects/Launchers2/Launcher3"]
+[editable path="Objects/Launchers2/Launcher4"]
+[editable path="Objects/Launchers2/Launcher"]

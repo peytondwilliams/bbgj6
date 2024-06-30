@@ -1,0 +1,170 @@
+[gd_scene load_steps=13 format=3 uid="uid://caojjqiqkuyi6"]
+
+[ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_kagnf"]
+[ext_resource type="Texture2D" uid="uid://b6lnndlxrwekt" path="res://assets/sprites/black.png" id="2_8m0sc"]
+[ext_resource type="PackedScene" uid="uid://cs1as58873mn" path="res://scenes/objects/dimension_2_wall.tscn" id="3_0ybfx"]
+[ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="3_3hqlb"]
+[ext_resource type="PackedScene" uid="uid://dmxujmchhawdw" path="res://scenes/objects/interact_button.tscn" id="3_i6jw4"]
+[ext_resource type="PackedScene" uid="uid://dsus6nm5n2y5l" path="res://scenes/objects/spikes.tscn" id="3_mtc4u"]
+[ext_resource type="PackedScene" uid="uid://bdvxnjcflf12b" path="res://scenes/objects/cube_spawner.tscn" id="4_oyhkq"]
+[ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="7_eij0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skohj"]
+size = Vector2(1620, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wijn5"]
+size = Vector2(1620, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyjju"]
+size = Vector2(257, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sv346"]
+size = Vector2(39, 347.5)
+
+[node name="Level4-box-spawner" type="Node2D"]
+
+[node name="RigidCharacterBody2D" parent="." instance=ExtResource("1_kagnf")]
+position = Vector2(97, 129)
+
+[node name="Structure" type="Node2D" parent="."]
+
+[node name="LevelBlock1" type="StaticBody2D" parent="Structure"]
+position = Vector2(-1004, 252)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock1"]
+position = Vector2(641, -8.5)
+shape = SubResource("RectangleShape2D_skohj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock1"]
+position = Vector2(645, -7)
+scale = Vector2(101.5, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="LevelBlock2" type="StaticBody2D" parent="Structure"]
+position = Vector2(1224, 244)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock2"]
+position = Vector2(641, -8.5)
+shape = SubResource("RectangleShape2D_wijn5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock2"]
+position = Vector2(641, -8)
+scale = Vector2(101.5, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="LevelBlock3" type="StaticBody2D" parent="Structure"]
+position = Vector2(70, 534)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock3"]
+position = Vector2(641, -13.5)
+shape = SubResource("RectangleShape2D_wijn5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock3"]
+position = Vector2(773, -15)
+scale = Vector2(31.5, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="LevelBlock4" type="StaticBody2D" parent="Structure"]
+position = Vector2(458, 373)
+rotation = -3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock4"]
+position = Vector2(-40.5, -8.50002)
+shape = SubResource("RectangleShape2D_jyjju")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock4"]
+position = Vector2(-62.4265, -8)
+scale = Vector2(13.5717, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="LevelBlock5" type="StaticBody2D" parent="Structure"]
+position = Vector2(441, 328)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock5"]
+position = Vector2(-40.5, -8.50002)
+shape = SubResource("RectangleShape2D_jyjju")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock5"]
+position = Vector2(9.64095, -8)
+scale = Vector2(10.1069, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="LevelBlock6" type="StaticBody2D" parent="Structure"]
+position = Vector2(618, 453)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock6"]
+position = Vector2(-40.5, -8.50002)
+shape = SubResource("RectangleShape2D_jyjju")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock6"]
+position = Vector2(2.58542, -8)
+scale = Vector2(10.9888, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="Dimension2Wall" parent="Structure" instance=ExtResource("3_0ybfx")]
+position = Vector2(1061, 208)
+
+[node name="CollisionShape2D" parent="Structure/Dimension2Wall" index="0"]
+position = Vector2(11.5, -164.25)
+shape = SubResource("RectangleShape2D_sv346")
+
+[node name="Sprite2D" parent="Structure/Dimension2Wall" index="1"]
+position = Vector2(11.5, -165)
+scale = Vector2(2.4375, 21.625)
+
+[node name="LevelBlock7" type="StaticBody2D" parent="Structure"]
+position = Vector2(1081, 338)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock7"]
+position = Vector2(-40.5, -8.50002)
+shape = SubResource("RectangleShape2D_jyjju")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock7"]
+position = Vector2(-40.2519, -8)
+scale = Vector2(16.3435, 2.5)
+texture = ExtResource("2_8m0sc")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Spikes3" parent="Objects" instance=ExtResource("3_mtc4u")]
+position = Vector2(978, 493)
+
+[node name="Spikes2" parent="Objects" instance=ExtResource("3_mtc4u")]
+position = Vector2(861, 493)
+
+[node name="Spikes" parent="Objects" instance=ExtResource("3_mtc4u")]
+position = Vector2(707, 493)
+
+[node name="InteractButton" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("3_i6jw4")]
+position = Vector2(135, 204)
+linked_node = NodePath("../CubeSpawner")
+
+[node name="InteractButton2" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("3_i6jw4")]
+position = Vector2(378, 207)
+linked_node = NodePath("../MovingPlatform")
+
+[node name="DimensionHandler" parent="Objects/InteractButton2" index="0"]
+dimension = 2
+
+[node name="PortalSurface" parent="Objects" instance=ExtResource("3_3hqlb")]
+position = Vector2(453, 310)
+
+[node name="CubeSpawner" parent="Objects" instance=ExtResource("4_oyhkq")]
+position = Vector2(735, -124)
+cube_is_all_dimensions = true
+
+[node name="MovingPlatform" parent="Objects" instance=ExtResource("7_eij0n")]
+position = Vector2(736, 222)
+left_dist_pixels = 130
+right_dist_pixels = 130
+speed_pixels = 200
+
+[node name="DimensionHandler" parent="Objects/MovingPlatform" index="0"]
+dimension = 2
+
+[editable path="Structure/Dimension2Wall"]
+[editable path="Objects/InteractButton2"]
+[editable path="Objects/MovingPlatform"]
