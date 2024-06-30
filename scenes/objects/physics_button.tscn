@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdk72s52itc07"]
+[gd_scene load_steps=10 format=3 uid="uid://cdk72s52itc07"]
 
 [ext_resource type="Script" path="res://scenes/objects/physics_button.gd" id="1_50e6u"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_niswo"]
 [ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="3_b61u8"]
+[ext_resource type="AudioStream" uid="uid://dch632yurb1vu" path="res://assets/audio/sfx/big_button_up.wav" id="4_wy6qx"]
+[ext_resource type="AudioStream" uid="uid://cdwcay2apj2tx" path="res://assets/audio/sfx/big_button_down.wav" id="5_fwppu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiqfk"]
 size = Vector2(89, 2)
@@ -95,6 +97,12 @@ libraries = {
 
 [node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("3_b61u8")]
 bodies = [NodePath("../StaticBody2D"), NodePath("../AnimatableBody2D"), NodePath("../AnimatableBody2D/Detection2D")]
+
+[node name="ButtonUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wy6qx")
+
+[node name="ButtonDownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fwppu")
 
 [connection signal="body_entered" from="AnimatableBody2D/Detection2D" to="." method="_on_detection_2d_body_entered"]
 [connection signal="body_exited" from="AnimatableBody2D/Detection2D" to="." method="_on_detection_2d_body_exited"]

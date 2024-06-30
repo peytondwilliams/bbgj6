@@ -26,11 +26,13 @@ func switch_state(state: bool):
 
 func _on_detection_2d_body_entered(body):
 	if detection_area.get_overlapping_bodies().size() <= 1:
+		$ButtonDownSound.play()
 		anim_player.play("press_down")
 		switch_state(true)
 
 func _on_detection_2d_body_exited(body):
 	if detection_area.get_overlapping_bodies().size() == 0:
+		$ButtonUpSound.play()
 		anim_player.play("press_up")
 		switch_state(false)
 

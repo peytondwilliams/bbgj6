@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqi3g6103jneb"]
+[gd_scene load_steps=10 format=3 uid="uid://dqi3g6103jneb"]
 
 [ext_resource type="Script" path="res://scenes/agents/Player.gd" id="1_kfqh5"]
 [ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_vnqs1"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="3_8irsv"]
+[ext_resource type="AudioStream" uid="uid://dii7i7ee7exv5" path="res://assets/audio/sfx/portal_shoot.wav" id="4_c3puu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_icgir"]
 friction = 0.0
@@ -91,6 +92,9 @@ offset_left = -2220.0
 offset_top = -1346.0
 offset_right = 2119.0
 offset_bottom = 1600.0
+
+[node name="PortalShoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_c3puu")
 
 [connection signal="body_entered" from="FeetArea2D" to="." method="_on_feet_area_2d_body_entered"]
 [connection signal="body_exited" from="FeetArea2D" to="." method="_on_feet_area_2d_body_exited"]

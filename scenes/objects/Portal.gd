@@ -24,6 +24,7 @@ func set_dimension(curr_dimension: int):
 
 
 func _on_body_entered(body):
+	$WarpSound.play()
 	if body.has_method("get_dimension_handler"):
 		body.get_dimension_handler().swap_dimension(to_dimension)
 	elif body.has_method("swap_dimension"):

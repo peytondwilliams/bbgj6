@@ -15,6 +15,7 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	var direction_vector = Vector2(cos(rotation), sin(rotation)).rotated(deg_to_rad(-90))
 	if body is RigidBody2D:
+		$Boing.play()
 		if body.is_in_group("pickup"):
 			body.apply_central_impulse(direction_vector * BOX_FORCE)
 		else:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmxujmchhawdw"]
+[gd_scene load_steps=6 format=3 uid="uid://dmxujmchhawdw"]
 
 [ext_resource type="Script" path="res://scenes/objects/interact_button.gd" id="1_rbmue"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_4lg78"]
 [ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_ohfno"]
+[ext_resource type="AudioStream" uid="uid://yyiekhlaqpao" path="res://assets/audio/sfx/light_button_press.wav" id="4_mnnq5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_75obg"]
 radius = 33.0151
@@ -29,3 +30,6 @@ self_modulate = Color(1, 0.0823529, 0.109804, 1)
 position = Vector2(-9.53674e-07, -7.85965)
 scale = Vector2(0.382353, 0.114035)
 texture = ExtResource("2_4lg78")
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mnnq5")
