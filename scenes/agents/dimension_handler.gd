@@ -11,6 +11,16 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	eb.player_dimension_swap.connect(player_dimension_swap)
+
+	var other_dimension = 2
+	if dimension == 2:
+		other_dimension = 1
+		
+	for body : CollisionObject2D in bodies:
+		body.set_collision_layer_value(other_dimension + 3, false)
+		body.set_collision_mask_value(other_dimension + 3, false)
+		body.set_collision_layer_value(dimension + 3, true)
+		body.set_collision_mask_value(dimension + 3, true)
 	
 	if is_all_dimensions:
 		for body : CollisionObject2D in bodies:
@@ -18,9 +28,9 @@ func _ready():
 			body.set_collision_mask_value(4, true)
 			body.set_collision_layer_value(5, true)
 			body.set_collision_mask_value(5, true)
+			
 	elif dimension != eb.player_dimension:
 		swap_hidden()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

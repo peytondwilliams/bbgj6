@@ -1,0 +1,148 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpps5s7mn52h5"]
+
+[ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_fid70"]
+[ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="2_32clq"]
+[ext_resource type="Texture2D" uid="uid://b6lnndlxrwekt" path="res://assets/sprites/black.png" id="2_enryl"]
+[ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="2_hn4wg"]
+[ext_resource type="PackedScene" uid="uid://dmxujmchhawdw" path="res://scenes/objects/interact_button.tscn" id="4_8wvyr"]
+[ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="5_vvdgf"]
+[ext_resource type="PackedScene" uid="uid://cs1as58873mn" path="res://scenes/objects/dimension_2_wall.tscn" id="7_lf84t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5jaj"]
+size = Vector2(1623, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knqor"]
+size = Vector2(211, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o18td"]
+size = Vector2(42, 213.5)
+
+[node name="Level2-Platform" type="Node2D"]
+
+[node name="RigidCharacterBody2D" parent="." instance=ExtResource("1_fid70")]
+position = Vector2(214, 373)
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="InteractButton2" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_8wvyr")]
+position = Vector2(683, 257)
+linked_node = NodePath("../MovingPlatform")
+
+[node name="DimensionHandler" parent="Objects/InteractButton2" index="0"]
+dimension = 2
+
+[node name="InteractButton3" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_8wvyr")]
+position = Vector2(876, 257)
+linked_node = NodePath("../MovingPlatform2")
+
+[node name="DimensionHandler" parent="Objects/InteractButton3" index="0"]
+dimension = 2
+
+[node name="PortalSurface" parent="Objects" instance=ExtResource("2_32clq")]
+position = Vector2(57, 389)
+
+[node name="PortalSurface2" parent="Objects" instance=ExtResource("2_32clq")]
+position = Vector2(55, -133)
+
+[node name="MovingPlatform2" parent="Objects" instance=ExtResource("2_hn4wg")]
+position = Vector2(562, 20)
+speed_pixels = 100
+
+[node name="DimensionHandler" parent="Objects/MovingPlatform2" index="0"]
+dimension = 2
+
+[node name="MovingPlatform" parent="Objects" instance=ExtResource("2_hn4wg")]
+position = Vector2(347, 164)
+speed_pixels = 100
+
+[node name="DimensionHandler" parent="Objects/MovingPlatform" index="0"]
+dimension = 2
+
+[node name="Door" parent="Objects" instance=ExtResource("5_vvdgf")]
+position = Vector2(1270, 379)
+
+[node name="InteractButton" parent="Objects" node_paths=PackedStringArray("linked_node") instance=ExtResource("4_8wvyr")]
+position = Vector2(223, -105)
+linked_node = NodePath("../Door")
+dont_switch_state = true
+
+[node name="Structure" type="Node2D" parent="."]
+
+[node name="LevelBlock1" type="StaticBody2D" parent="Structure"]
+position = Vector2(187, 467)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock1"]
+position = Vector2(640.5, -9)
+shape = SubResource("RectangleShape2D_j5jaj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock1"]
+position = Vector2(641, -8)
+scale = Vector2(101.5, 2.5)
+texture = ExtResource("2_enryl")
+
+[node name="LevelBlock3" type="StaticBody2D" parent="Structure"]
+position = Vector2(843, 307)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock3"]
+position = Vector2(-65.5, -8.5)
+shape = SubResource("RectangleShape2D_knqor")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock3"]
+position = Vector2(-66.9193, -9)
+scale = Vector2(-13.3558, -2.48076)
+texture = ExtResource("2_enryl")
+
+[node name="LevelBlock4" type="StaticBody2D" parent="Structure"]
+position = Vector2(225, -58)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock4"]
+position = Vector2(-65.5, -8.5)
+shape = SubResource("RectangleShape2D_knqor")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock4"]
+position = Vector2(-66.9193, -9)
+scale = Vector2(-13.3558, -2.48076)
+texture = ExtResource("2_enryl")
+
+[node name="LevelBlock2" type="StaticBody2D" parent="Structure"]
+position = Vector2(40, 303)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock2"]
+position = Vector2(640.5, -9)
+shape = SubResource("RectangleShape2D_j5jaj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock2"]
+position = Vector2(641, -8)
+scale = Vector2(101.5, 2.5)
+texture = ExtResource("2_enryl")
+
+[node name="LevelBlock5" type="StaticBody2D" parent="Structure"]
+position = Vector2(1277, 153)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Structure/LevelBlock5"]
+position = Vector2(640.5, -9)
+shape = SubResource("RectangleShape2D_j5jaj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock5"]
+position = Vector2(641, -8)
+scale = Vector2(101.5, 2.5)
+texture = ExtResource("2_enryl")
+
+[node name="Dimension2Wall" parent="Structure" instance=ExtResource("7_lf84t")]
+position = Vector2(1242, 431)
+
+[node name="CollisionShape2D" parent="Structure/Dimension2Wall" index="0"]
+position = Vector2(-11, -97.25)
+shape = SubResource("RectangleShape2D_o18td")
+
+[node name="Sprite2D" parent="Structure/Dimension2Wall" index="1"]
+position = Vector2(-11.5, -98.5)
+scale = Vector2(2.4375, 13.3125)
+
+[editable path="Objects/InteractButton2"]
+[editable path="Objects/InteractButton3"]
+[editable path="Objects/MovingPlatform2"]
+[editable path="Objects/MovingPlatform"]
+[editable path="Structure/Dimension2Wall"]

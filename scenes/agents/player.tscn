@@ -20,11 +20,12 @@ radius = 45.0444
 [sub_resource type="CircleShape2D" id="CircleShape2D_ng7t0"]
 radius = 16.0
 
-[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("body", "swap_cooldown_timer", "camera", "gun", "feet_area", "interact_area", "pickup_area")]
+[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("body", "swap_cooldown_timer", "camera", "gun", "feet_area", "interact_area", "pickup_area") groups=["player"]]
 position = Vector2(2.08165e-12, -100)
 collision_layer = 14
 collision_mask = 9
 physics_material_override = SubResource("PhysicsMaterial_icgir")
+gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_kfqh5")
 body = NodePath(".")
