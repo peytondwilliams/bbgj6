@@ -6,7 +6,7 @@ const scene_ordering = [
 	"Level2-Platform",
 	"Level3-DimensionBox",
 	"Level4-box-spawner",
-	"Level5-launcher",
+	"level5-launcher",
 	"EndScreen"
 ]
 
@@ -15,8 +15,8 @@ const scene_name_to_file_map = {
 	"Level1-Box": "res://scenes/levels/level_1_box.tscn",
 	"Level2-Platform": "res://scenes/levels/level_2_platform.tscn",
 	"Level3-DimensionBox": "res://scenes/levels/level_3_dimension_box.tscn",
-	"Level4-Box_Spawner": "res://scenes/levels/level_4_box_spawner.tscn",
-	"Level5-Launcher": "res://scenes/levels/level_5_launcher.tscn",
+	"Level4-box-spawner": "res://scenes/levels/level_4_box_spawner.tscn",
+	"level5-launcher": "res://scenes/levels/level_5_launcher.tscn",
 	"EndScreen": "res://scenes/menu/end_screen.tscn",
 }
 

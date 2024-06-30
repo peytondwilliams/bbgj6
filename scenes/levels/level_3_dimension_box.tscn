@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ot46qartim4d"]
+[gd_scene load_steps=21 format=3 uid="uid://ot46qartim4d"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_2ws7a"]
 [ext_resource type="PackedScene" uid="uid://c2m3wx682wwb0" path="res://scenes/objects/dimension_1_wall.tscn" id="2_s2lsv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1as58873mn" path="res://scenes/objects/dimension_2_wall.tscn" id="4_srj7k"]
 [ext_resource type="PackedScene" uid="uid://e24l1fyk7ovj" path="res://scenes/objects/box.tscn" id="5_a6jla"]
 [ext_resource type="PackedScene" uid="uid://dxkaxw1xq6ayo" path="res://scenes/levels/texture_rect.tscn" id="7_new18"]
+[ext_resource type="PackedScene" uid="uid://b7b13e70raiso" path="res://scenes/objects/exit.tscn" id="8_punix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atrm6"]
 size = Vector2(24, 164)
@@ -178,7 +179,7 @@ position = Vector2(-21, 447)
 is_all_dimensions = true
 
 [node name="Sprite2D" parent="Objects/Box" index="2"]
-modulate = Color(0.359675, 0.0557994, 0.34801, 1)
+modulate = Color(0, 0.701961, 0.176471, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7dds0")
@@ -191,9 +192,9 @@ color = Color(0.528932, 0.735458, 0.268515, 1)
 texture = SubResource("GradientTexture2D_cacgq")
 
 [node name="TextureRect" parent="." instance=ExtResource("7_new18")]
-offset_left = -726.0
-offset_top = -1258.0
-offset_right = 1765.0
+offset_left = -870.0
+offset_top = -960.0
+offset_right = 1822.0
 offset_bottom = 1283.0
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -206,6 +207,9 @@ position = Vector2(37.5, 377.5)
 scale = Vector2(2.17188, 12.7969)
 color = Color(0.704105, 0.430099, 0.304589, 1)
 texture = SubResource("GradientTexture2D_d6l2w")
+
+[node name="Exit" parent="." instance=ExtResource("8_punix")]
+position = Vector2(596, 348)
 
 [editable path="Structure/Dimension1Wall"]
 [editable path="Dimension2Wall"]

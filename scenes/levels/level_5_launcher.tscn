@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cchcpmtqjtuen"]
+[gd_scene load_steps=26 format=3 uid="uid://cchcpmtqjtuen"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_v3sja"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_c110q"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cqxalihsb3ukx" path="res://scenes/objects/launcher.tscn" id="4_c8yl5"]
 [ext_resource type="PackedScene" uid="uid://cdk72s52itc07" path="res://scenes/objects/physics_button.tscn" id="4_cy8fo"]
 [ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="10_nx25g"]
+[ext_resource type="PackedScene" uid="uid://b7b13e70raiso" path="res://scenes/objects/exit.tscn" id="12_snuyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox5s2"]
 size = Vector2(2377, 38)
@@ -372,6 +373,9 @@ scale = Vector2(62.4766, 1)
 color = Color(1, 0.27451, 1, 1)
 energy = 3.02
 texture = SubResource("GradientTexture2D_54lht")
+
+[node name="Exit" parent="." instance=ExtResource("12_snuyn")]
+position = Vector2(1870, 573)
 
 [editable path="Structure/Dimension2Wall3"]
 [editable path="Structure/Dimension2Wall2"]

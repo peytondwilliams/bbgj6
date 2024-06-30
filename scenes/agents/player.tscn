@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqi3g6103jneb"]
 
 [ext_resource type="Script" path="res://scenes/agents/Player.gd" id="1_kfqh5"]
-[ext_resource type="Texture2D" uid="uid://fhh4lqjb4ods" path="res://assets/sprites/ball.png" id="2_sjvue"]
-[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="3_8irsv"]
+[ext_resource type="Texture2D" uid="uid://dfrbki6vrbgam" path="res://assets/sprites/ball.png" id="2_sjvue"]
+[ext_resource type="PackedScene" uid="uid://0dpvkov7146r" path="res://scenes/agents/portal_gun.tscn" id="3_bqnur"]
 [ext_resource type="AudioStream" uid="uid://dii7i7ee7exv5" path="res://assets/audio/sfx/portal_shoot.wav" id="4_c3puu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_icgir"]
@@ -44,8 +44,8 @@ shape = SubResource("CapsuleShape2D_so5sj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(4, 5, 5, 1)
-position = Vector2(1, -14.5)
-scale = Vector2(0.34, 0.3325)
+position = Vector2(-1.90735e-06, -14)
+scale = Vector2(0.1825, 0.3325)
 texture = ExtResource("2_sjvue")
 
 [node name="SwapCooldownTimer" type="Timer" parent="."]
@@ -57,12 +57,10 @@ one_shot = true
 [node name="GunSprite" type="Sprite2D" parent="."]
 position = Vector2(81, 0)
 scale = Vector2(2.64, 1)
-texture = ExtResource("3_8irsv")
 
-[node name="GunSprite2" type="Sprite2D" parent="GunSprite"]
-position = Vector2(-5.68182, 0)
-scale = Vector2(0.366274, 1.98463)
-texture = ExtResource("3_8irsv")
+[node name="PortalGun" parent="GunSprite" instance=ExtResource("3_bqnur")]
+position = Vector2(-22.3485, -27)
+scale = Vector2(0.0343352, 0.0955912)
 
 [node name="FeetArea2D" type="Area2D" parent="."]
 collision_layer = 0
