@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpps5s7mn52h5"]
+[gd_scene load_steps=20 format=3 uid="uid://cpps5s7mn52h5"]
 
 [ext_resource type="PackedScene" uid="uid://dqi3g6103jneb" path="res://scenes/agents/player.tscn" id="1_fid70"]
 [ext_resource type="PackedScene" uid="uid://dqj8uxexevsi8" path="res://scenes/objects/portal_surface.tscn" id="2_32clq"]
-[ext_resource type="Texture2D" uid="uid://b6lnndlxrwekt" path="res://assets/sprites/black.png" id="2_enryl"]
 [ext_resource type="PackedScene" uid="uid://dma2bdsobhjo2" path="res://scenes/objects/moving_platform.tscn" id="2_hn4wg"]
 [ext_resource type="PackedScene" uid="uid://dmxujmchhawdw" path="res://scenes/objects/interact_button.tscn" id="4_8wvyr"]
 [ext_resource type="PackedScene" uid="uid://6wnflkj5l5hh" path="res://scenes/objects/door.tscn" id="5_vvdgf"]
 [ext_resource type="PackedScene" uid="uid://cs1as58873mn" path="res://scenes/objects/dimension_2_wall.tscn" id="7_lf84t"]
+[ext_resource type="PackedScene" uid="uid://t8qy8f02c2ij" path="res://scenes/levels/directional_light_2d.tscn" id="8_fvgoy"]
+[ext_resource type="PackedScene" uid="uid://bryeljjcybdpe" path="res://scenes/levels/directional_light_2d_2.tscn" id="9_0i4jg"]
+[ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="10_70kro"]
+[ext_resource type="PackedScene" uid="uid://dxkaxw1xq6ayo" path="res://scenes/levels/texture_rect.tscn" id="10_v21xf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5jaj"]
 size = Vector2(1623, 38)
@@ -14,8 +17,30 @@ size = Vector2(1623, 38)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knqor"]
 size = Vector2(211, 39)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0ssvy"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o18td"]
 size = Vector2(42, 213.5)
+
+[sub_resource type="Environment" id="Environment_krcyu"]
+background_mode = 3
+background_energy_multiplier = 5.0
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.29
+glow_strength = 0.45
+glow_bloom = 0.33
+
+[sub_resource type="Gradient" id="Gradient_ydui4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_64buk"]
+gradient = SubResource("Gradient_ydui4")
+
+[sub_resource type="Gradient" id="Gradient_4cr42"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d2hq4"]
+gradient = SubResource("Gradient_4cr42")
 
 [node name="Level2-Platform" type="Node2D"]
 
@@ -51,12 +76,18 @@ speed_pixels = 100
 [node name="DimensionHandler" parent="Objects/MovingPlatform2" index="0"]
 dimension = 2
 
+[node name="Sprite2D" parent="Objects/MovingPlatform2/AnimatableBody2D" index="1"]
+self_modulate = Color(0.14902, 0.619608, 0.686275, 0.996078)
+
 [node name="MovingPlatform" parent="Objects" instance=ExtResource("2_hn4wg")]
 position = Vector2(347, 164)
 speed_pixels = 100
 
 [node name="DimensionHandler" parent="Objects/MovingPlatform" index="0"]
 dimension = 2
+
+[node name="Sprite2D" parent="Objects/MovingPlatform/AnimatableBody2D" index="1"]
+self_modulate = Color(0.14902, 0.619608, 0.686275, 0.996078)
 
 [node name="Door" parent="Objects" instance=ExtResource("5_vvdgf")]
 position = Vector2(1270, 379)
@@ -78,7 +109,7 @@ shape = SubResource("RectangleShape2D_j5jaj")
 [node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock1"]
 position = Vector2(641, -8)
 scale = Vector2(101.5, 2.5)
-texture = ExtResource("2_enryl")
+texture = ExtResource("10_70kro")
 
 [node name="LevelBlock3" type="StaticBody2D" parent="Structure"]
 position = Vector2(843, 307)
@@ -90,7 +121,7 @@ shape = SubResource("RectangleShape2D_knqor")
 [node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock3"]
 position = Vector2(-66.9193, -9)
 scale = Vector2(-13.3558, -2.48076)
-texture = ExtResource("2_enryl")
+texture = ExtResource("10_70kro")
 
 [node name="LevelBlock4" type="StaticBody2D" parent="Structure"]
 position = Vector2(225, -58)
@@ -102,7 +133,7 @@ shape = SubResource("RectangleShape2D_knqor")
 [node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock4"]
 position = Vector2(-66.9193, -9)
 scale = Vector2(-13.3558, -2.48076)
-texture = ExtResource("2_enryl")
+texture = ExtResource("10_70kro")
 
 [node name="LevelBlock2" type="StaticBody2D" parent="Structure"]
 position = Vector2(40, 303)
@@ -113,9 +144,10 @@ position = Vector2(640.5, -9)
 shape = SubResource("RectangleShape2D_j5jaj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock2"]
-position = Vector2(641, -8)
+material = SubResource("CanvasItemMaterial_0ssvy")
+position = Vector2(636, -3.9977)
 scale = Vector2(101.5, 2.5)
-texture = ExtResource("2_enryl")
+texture = ExtResource("10_70kro")
 
 [node name="LevelBlock5" type="StaticBody2D" parent="Structure"]
 position = Vector2(1277, 153)
@@ -128,7 +160,7 @@ shape = SubResource("RectangleShape2D_j5jaj")
 [node name="Sprite2D" type="Sprite2D" parent="Structure/LevelBlock5"]
 position = Vector2(641, -8)
 scale = Vector2(101.5, 2.5)
-texture = ExtResource("2_enryl")
+texture = ExtResource("10_70kro")
 
 [node name="Dimension2Wall" parent="Structure" instance=ExtResource("7_lf84t")]
 position = Vector2(1242, 431)
@@ -138,8 +170,43 @@ position = Vector2(-11, -97.25)
 shape = SubResource("RectangleShape2D_o18td")
 
 [node name="Sprite2D" parent="Structure/Dimension2Wall" index="1"]
+self_modulate = Color(9.62615e-08, 0.409822, 0.490449, 1)
 position = Vector2(-11.5, -98.5)
 scale = Vector2(2.4375, 13.3125)
+
+[node name="DirectionalLight2D" parent="." instance=ExtResource("8_fvgoy")]
+color = Color(0.1914, 0.33, 0.22374, 1)
+blend_mode = 2
+
+[node name="DirectionalLight2D2" parent="." instance=ExtResource("9_0i4jg")]
+modulate = Color(1, 1, 1, 0.466667)
+self_modulate = Color(1, 1, 1, 0.564706)
+color = Color(0.137255, 0.811765, 0.447059, 1)
+energy = 0.2
+
+[node name="TextureRect" parent="." instance=ExtResource("10_v21xf")]
+modulate = Color(0.620591, 0.973687, 0.949204, 1)
+offset_left = -449.0
+offset_top = -1733.0
+offset_right = 1860.0
+offset_bottom = 896.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_krcyu")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(155, 220)
+rotation = -0.427779
+scale = Vector2(-2.62346, 14.3142)
+texture = SubResource("GradientTexture2D_64buk")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(905, 168)
+rotation = 0.2116
+scale = Vector2(6.11222, -13.6841)
+color = Color(0.288733, 0.242986, 0.635156, 1)
+energy = 0.57
+texture = SubResource("GradientTexture2D_d2hq4")
 
 [editable path="Objects/InteractButton2"]
 [editable path="Objects/InteractButton3"]
