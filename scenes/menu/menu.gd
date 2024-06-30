@@ -22,7 +22,8 @@ func _on_PlayButton_pressed() -> void:
 			"val": 15
 		},
 	}
-	Game.change_scene_to_file("res://scenes/levels/basic.tscn", params)
+	LevelManager.load_next_scene()
+	# Game.change_scene_to_file("res://scenes/levels/basic.tscn", params)
 
 
 func _on_ExitButton_pressed() -> void:

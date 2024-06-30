@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmi1onoq1js8b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gynoc"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 330.0
+offset_right = 630.0
+offset_bottom = 358.0
+text = "Thanks for playing!
+Press Q to exit."
+label_settings = SubResource("LabelSettings_gynoc")
+horizontal_alignment = 1
