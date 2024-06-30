@@ -112,7 +112,8 @@ func handle_portal_shoot():
 	
 	gun.look_at(mouse_pos)
 	
-	if Input.is_action_just_pressed("input_click"):	
+	if Input.is_action_just_pressed("input_click"):
+		$PortalShoot.play()
 		var portal_proj = PORTAL_PROJECTILE_PRELOAD.instantiate()
 		get_parent().add_child(portal_proj)
 		portal_proj.global_position = gun.global_position

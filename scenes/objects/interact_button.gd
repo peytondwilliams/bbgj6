@@ -15,7 +15,7 @@ func _process(delta):
 	pass
 
 func interact():
-	# TODO sound effect
+	$ButtonPress.play()
 	if linked_node == null:
 		print("null node")
 		return

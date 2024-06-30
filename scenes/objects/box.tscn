@@ -12,7 +12,6 @@ rough = true
 size = Vector2(49, 49)
 
 [node name="Box" type="RigidBody2D" groups=["pickup"]]
-modulate = Color(0.576471, 0.337255, 0.054902, 1)
 collision_layer = 10
 collision_mask = 9
 physics_material_override = SubResource("PhysicsMaterial_atcle")
@@ -28,6 +27,7 @@ position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_45o3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.575012, 0.336116, 0.0568468, 1)
 position = Vector2(0.5, -0.5)
 scale = Vector2(2.8125, 2.8125)
 texture = ExtResource("1_xcbuw")

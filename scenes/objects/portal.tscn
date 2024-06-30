@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://qloxs0j41yhf"]
+[gd_scene load_steps=5 format=3 uid="uid://qloxs0j41yhf"]
 
 [ext_resource type="Script" path="res://scenes/objects/Portal.gd" id="1_pmgtg"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="2_0hvfg"]
+[ext_resource type="AudioStream" uid="uid://bbaqswpj7e7ho" path="res://assets/audio/sfx/warp_dimension.wav" id="3_3nglk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1x3do"]
 size = Vector2(16, 104.5)
@@ -21,5 +22,8 @@ texture = ExtResource("2_0hvfg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17.75)
 shape = SubResource("RectangleShape2D_1x3do")
+
+[node name="WarpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3nglk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

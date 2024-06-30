@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://6wnflkj5l5hh"]
+[gd_scene load_steps=9 format=3 uid="uid://6wnflkj5l5hh"]
 
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_ad2ot"]
 [ext_resource type="Script" path="res://scenes/objects/door.gd" id="1_n7xk6"]
 [ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="2_7au4w"]
+[ext_resource type="AudioStream" uid="uid://cmrkoldr5h6i3" path="res://assets/audio/sfx/door_hum.wav" id="4_lfv47"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6trvq"]
 size = Vector2(40, 121)
@@ -70,3 +71,6 @@ texture = ExtResource("1_ad2ot")
 libraries = {
 "": SubResource("AnimationLibrary_kri7b")
 }
+
+[node name="DoorHum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lfv47")

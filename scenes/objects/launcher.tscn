@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqxalihsb3ukx"]
+[gd_scene load_steps=7 format=3 uid="uid://cqxalihsb3ukx"]
 
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="1_8p21d"]
 [ext_resource type="Script" path="res://scenes/objects/launcher.gd" id="2_6hx7w"]
 [ext_resource type="Texture2D" uid="uid://c8u74cumuk8qf" path="res://assets/sprites/arrow.svg" id="2_84my1"]
 [ext_resource type="PackedScene" uid="uid://3650js0l0h0w" path="res://scenes/agents/dimension_handler.tscn" id="4_l331c"]
+[ext_resource type="AudioStream" uid="uid://ceuq6amakibew" path="res://assets/audio/sfx/boing.wav" id="5_e138i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24hgn"]
 size = Vector2(14.4906, 0.805032)
@@ -35,5 +36,8 @@ texture = ExtResource("1_8p21d")
 
 [node name="DimensionHandler" parent="." node_paths=PackedStringArray("bodies") instance=ExtResource("4_l331c")]
 bodies = [NodePath("../Area2D")]
+
+[node name="Boing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_e138i")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
