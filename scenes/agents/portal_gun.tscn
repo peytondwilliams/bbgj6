@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://0dpvkov7146r"]
+
+[node name="PortalGun" type="Polygon2D"]
+color = Color(0.266667, 0.690196, 0.266667, 1)
+polygon = PackedVector2Array(546, 326, 470, 434, 540, 434, 614, 330, 838, 330, 776, 267, 836, 218, 450, 218, 546, 269)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(2, -2)
+color = Color(0, 0.109804, 0, 1)
+polygon = PackedVector2Array(524, 341, 615, 341, 559, 420, 466, 420)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(147, -94)
+color = Color(0, 0.109804, 0, 1)
+polygon = PackedVector2Array(305, 331, 690, 331, 659, 363, 691, 399, 387, 399, 375, 378.863, 375, 359)

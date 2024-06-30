@@ -13,6 +13,8 @@ var direction := Vector2(1, 1)
 
 
 func _physics_process(delta):
+	$Polygon2D.rotate(PI * 10 * delta)
+	
 	var collision := move_and_collide(SPEED * direction)
 	if collision:
 	
