@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqi3g6103jneb"]
+[gd_scene load_steps=9 format=3 uid="uid://dqi3g6103jneb"]
 
 [ext_resource type="Script" path="res://scenes/agents/Player.gd" id="1_kfqh5"]
 [ext_resource type="Texture2D" uid="uid://dtwpm3uclaspj" path="res://assets/sprites/icon.png" id="2_vnqs1"]
 [ext_resource type="Texture2D" uid="uid://dglden3gcnpox" path="res://assets/sprites/white.png" id="3_8irsv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_icgir"]
-friction = 0.7
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_so5sj"]
 radius = 21.0
@@ -17,7 +17,10 @@ size = Vector2(34, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xcdu6"]
 radius = 45.0444
 
-[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("body", "swap_cooldown_timer", "camera", "gun", "feet_area", "interact_area")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ng7t0"]
+radius = 16.0
+
+[node name="RigidCharacterBody2D" type="RigidBody2D" node_paths=PackedStringArray("body", "swap_cooldown_timer", "camera", "gun", "feet_area", "interact_area", "pickup_area")]
 position = Vector2(2.08165e-12, -100)
 collision_layer = 14
 collision_mask = 9
@@ -30,6 +33,7 @@ camera = NodePath("Camera2D")
 gun = NodePath("GunSprite")
 feet_area = NodePath("FeetArea2D")
 interact_area = NodePath("InteractArea2D")
+pickup_area = NodePath("PickupArea2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_so5sj")
@@ -69,6 +73,14 @@ collision_mask = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
 position = Vector2(-2.08165e-12, -6)
 shape = SubResource("CircleShape2D_xcdu6")
+
+[node name="PickupArea2D" type="Area2D" parent="."]
+position = Vector2(53, -59)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
+shape = SubResource("CircleShape2D_ng7t0")
 
 [connection signal="body_entered" from="FeetArea2D" to="." method="_on_feet_area_2d_body_entered"]
 [connection signal="body_exited" from="FeetArea2D" to="." method="_on_feet_area_2d_body_exited"]

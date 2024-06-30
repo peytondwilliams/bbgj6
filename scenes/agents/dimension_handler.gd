@@ -18,7 +18,7 @@ func _ready():
 			body.set_collision_mask_value(4, true)
 			body.set_collision_layer_value(5, true)
 			body.set_collision_mask_value(5, true)
-	elif dimension != 1:
+	elif dimension != eb.player_dimension:
 		swap_hidden()
 
 
@@ -35,7 +35,6 @@ func player_dimension_swap(player_dimension: int):
 func swap_hidden():
 	for body : CollisionObject2D in bodies:
 		body.visible = !body.visible
-		body.set_collision_mask_value(3, !body.get_collision_mask_value(3))
 	
 
 func swap_dimension(new_dimension: int):
