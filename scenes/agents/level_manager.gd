@@ -4,6 +4,9 @@ const scene_ordering = [
 	"Menu",
 	"Level1-Box",
 	"Level2-Platform",
+	"Level3-DimensionBox",
+	"Level4-box-spawner",
+	"Level5-launcher",
 	"EndScreen"
 ]
 
@@ -11,6 +14,9 @@ const scene_name_to_file_map = {
 	"Menu": "res://scenes/menu/menu.tscn",
 	"Level1-Box": "res://scenes/levels/level_1_box.tscn",
 	"Level2-Platform": "res://scenes/levels/level_2_platform.tscn",
+	"Level3-DimensionBox": "res://scenes/levels/level_3_dimension_box.tscn",
+	"Level4-Box_Spawner": "res://scenes/levels/level_4_box_spawner.tscn",
+	"Level5-Launcher": "res://scenes/levels/level_5_launcher.tscn",
 	"EndScreen": "res://scenes/menu/end_screen.tscn",
 }
 
@@ -37,6 +43,14 @@ func load_next_scene():
 		unregistered_scene_error(cur_scene_name)
 		
 	var next_scene = scene_ordering[cur_scene_idx + 1]
+	
+	if next_scene == "Menu":
+		$MenuMusicPlayer.play()
+		$GameMusicPlayer.stop()
+	elif next_scene == "Level1-Box":
+		$MenuMusicPlayer.stop()
+		$GameMusicPlayer.play()
+			
 	var next_scene_file = scene_name_to_file_map[next_scene]
 	if next_scene_file == null:
 		unregistered_scene_error(next_scene)

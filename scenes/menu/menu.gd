@@ -22,6 +22,7 @@ func _on_PlayButton_pressed() -> void:
 			"val": 15
 		},
 	}
+	$MenuMusic.stop()
 	LevelManager.load_next_scene()
 	# Game.change_scene_to_file("res://scenes/levels/basic.tscn", params)
 
