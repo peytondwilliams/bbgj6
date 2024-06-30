@@ -68,7 +68,7 @@ func _physics_process(delta):
 	apply_central_force(Vector2.DOWN * 9.8 * mass * FORCE_FACTOR)
 	apply_central_force(needed_accel * mass * air_factor)
 	
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("ui_up") and is_on_floor:
 		apply_central_impulse(Vector2.UP * VERTICAL_MOVE_IMPULSE)
 	
 	#var movement_force = input_direction * MOVE_FORCE * mirror_value
@@ -85,14 +85,16 @@ func handle_portal_shoot():
 	
 	gun.look_at(mouse_pos)
 	
-	if not Input.is_action_just_pressed("input_click"):
-		return
+	if Input.is_action_just_pressed("input_click"):	
+		var portal_proj = PORTAL_PROJECTILE_PRELOAD.instantiate()
+		get_parent().add_child(portal_proj)
+		portal_proj.global_position = gun.global_position
+		portal_proj.direction = Vector2.RIGHT.rotated(gun.rotation)
+		portal_proj.set_collision_mask_value(dimension + 3, true)
 		
-	var portal_proj = PORTAL_PROJECTILE_PRELOAD.instantiate()
-	get_parent().add_child(portal_proj)
-	portal_proj.global_position = gun.global_position
-	portal_proj.direction = Vector2.RIGHT.rotated(gun.rotation)
-	portal_proj.set_collision_mask_value(dimension + 3, true)
+		if spawned_portal != null:
+			spawned_portal.queue_free()
+			spawned_portal = null
 	
 func swap_dimension(new_dimension: int):
 	if not swap_cooldown_timer.is_stopped():

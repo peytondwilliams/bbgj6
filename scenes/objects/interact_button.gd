@@ -13,10 +13,15 @@ func _process(delta):
 
 func interact():
 	# TODO sound effect
-	if linked_node != null and linked_node.has_method("switch_state"):
+	if linked_node == null:
+		print("null node")
+		return
+	if linked_node.has_method("switch_state"):
 		linked_node.switch_state(true)
+	elif linked_node.has_method("handle_logic_gate"):
+		linked_node.handle_logic_gate(true, get_instance_id())
 	else:
-		print("linked node is null or doesnt have switch_state function!")
+		print("linked node  doesnt have switch_state or handle_logic_gate function!")
 
 func get_dimension_handler():
 	return $DimensionHandler
