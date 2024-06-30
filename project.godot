@@ -26,6 +26,7 @@ Transitions="*res://addons/ggt-core/transitions/transitions.tscn"
 Scenes="*res://addons/ggt-core/scenes/scenes.gd"
 Utils="*res://addons/ggt-core/utils/utils.gd"
 EventBus="*res://scenes/gameplay/eventbus.gd"
+LevelManager="*res://scenes/agents/level_manager.tscn"
 
 [category]
 
