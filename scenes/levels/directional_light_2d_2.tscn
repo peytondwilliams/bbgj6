@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bryeljjcybdpe"]
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D"]
+color = Color(0.138104, 3.46541e-06, 0.637467, 1)
